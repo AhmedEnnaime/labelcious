@@ -1,15 +1,19 @@
-FROM node:latest as build
+FROM node:19-alpine AS build
 
-WORKDIR /usr/local/app
+WORKDIR /app/labelcious_web
+
+COPY package*.json ./
+
+RUN npm install -g @angular/cli
 
 COPY . .
 
-RUN npm install
+RUN npm install && \
+    ng build
 
-RUN npm run build
+FROM nginx:1.17.1-alpine
 
-FROM nginx:latest
-
-COPY --from=build /usr/local/app/dist/labelcious_web /usr/share/nginx/html
+COPY --from=build /app/labelcious_web/dist/labelcious_web /usr/share/nginx/html
 
 EXPOSE 80
+

@@ -33,9 +33,14 @@ services:
       dockerfile: DockerFile
     ports:
       - "8080:80"
+    expose:
+      - "80"
+    environment:
+      - MOD=dev
     volumes:
-      - ${PWD}/frontend:/app/frontend
-      - /app/frontend/node_modules
+      - ${PWD}:/app/labelcious_web
+      - /app/labelcious_web/node_modules
+    command: ng serve
     depends_on:
       - backend
     networks:
