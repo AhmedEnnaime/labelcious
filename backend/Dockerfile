@@ -10,10 +10,10 @@ RUN mvn package
 
 FROM openjdk:17
 
-ARG JAR_FILE=backend.jar
+ARG JAR_FILE=backend-0.0.1-SNAPSHOT.jar
 
 WORKDIR /opt/app
 
-COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
+COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/backend.jar
 
-ENTRYPOINT ["java","-jar","backend.jar"]
+ENTRYPOINT ["java","-jar","/opt/app/backend.jar"]
