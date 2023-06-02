@@ -1,0 +1,52 @@
+version: '3.5'
+services:
+  backend:
+    container_name: lablecious_backend
+    build: 
+      context: ../backend
+      dockerfile: DockerFile
+    ports:
+      - "8082:8082"
+    env_file:
+      - ../.env
+    networks:
+      - lablecious
+    depends_on:
+      - psql_db
+
+  psql_db:
+    container_name: psql-db
+    image: "postgres:15"
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../.env
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    networks:
+      - lablecious
+
+  frontend:
+    container_name: lablecious_web
+    build: 
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - "8080:80"
+    volumes:
+      - ${PWD}/frontend:/app/frontend
+      - /app/frontend/node_modules
+    depends_on:
+      - backend
+    networks:
+      - lablecious
+
+networks:
+  lablecious:
+    driver: bridge
+
+volumes:
+  postgres-db:
+    driver: local
+
+
