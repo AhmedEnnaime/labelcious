@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "249326599146",
+    "project_id": "labelcious",
+    "storage_bucket": "labelcious.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249326599146:android:30cd2ff42c673f4cb29093",
+        "android_client_info": {
+          "package_name": "com.labelvie.labelcious.mobilelabelcious"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249326599146-ps0525o2pq6246j0muie01bv7bi8gj70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSF38O1esOai6hJ9r9Qe4jIEq03T7eKuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249326599146-ps0525o2pq6246j0muie01bv7bi8gj70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
