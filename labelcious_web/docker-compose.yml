@@ -40,7 +40,6 @@ services:
     volumes:
       - ${PWD}:/app/labelcious_web
       - /app/labelcious_web/node_modules
-    command: ng serve
     depends_on:
       - backend
     networks:
