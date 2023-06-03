@@ -22,8 +22,24 @@ class _LoginState extends State<Login> {
       idToken: googleAuth.idToken,
     );
 
-    final UserCredential userCredential =
-        await auth.signInWithCredential(credential);
+    final String email = googleUser.email;
+    final bool hasLabelvieEmail = email.contains('@labelvie');
+
+    if (hasLabelvieEmail) {
+      final UserCredential userCredential =
+          await auth.signInWithCredential(credential);
+      Navigator.push(context, MaterialPageRoute(builder: (_) => const Home()));
+    } else {
+      // Show an error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('The email address must contain @labelvie.'),
+        ),
+      );
+
+      // Sign out the user
+      await googleSignIn.signOut();
+    }
   }
 
   @override
@@ -40,10 +56,6 @@ class _LoginState extends State<Login> {
             onTap: () async {
               // Implementation of google sign in
               await signInWithGoogle();
-              if (mounted) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => const Home()));
-              }
             },
             child: Container(
               width: double.infinity,
