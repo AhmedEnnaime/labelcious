@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.labelvie.lablecious.backend.models.enums.CategoryEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,9 +14,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "name", nullable = false)
-    private CategoryEnum name;
+    private String name;
 
     @Column
     private String description;
