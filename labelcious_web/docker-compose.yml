@@ -52,5 +52,3 @@ networks:
 volumes:
   postgres-db:
     driver: local
-
-
