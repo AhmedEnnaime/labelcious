@@ -23,11 +23,13 @@ class _LoginState extends State<Login> {
     );
 
     final String email = googleUser.email;
-    final bool hasLabelvieEmail = email.contains('@labelvie');
+    final bool hasLabelvieEmail = email.contains('@gmail');
 
     if (hasLabelvieEmail) {
       final UserCredential userCredential =
           await auth.signInWithCredential(credential);
+      print(googleUser);
+      print(credential);
       Navigator.push(context, MaterialPageRoute(builder: (_) => const Home()));
     } else {
       // Show an error message
