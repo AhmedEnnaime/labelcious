@@ -17,3 +17,4 @@ WORKDIR /opt/app
 COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/backend.jar
 
 ENTRYPOINT ["java","-jar","/opt/app/backend.jar"]
+

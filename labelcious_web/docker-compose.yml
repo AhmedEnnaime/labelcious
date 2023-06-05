@@ -1,8 +1,8 @@
-version: '3.5'
+version: "3.5"
 services:
   backend:
     container_name: lablecious_backend
-    build: 
+    build:
       context: ../backend
       dockerfile: DockerFile
     ports:
@@ -28,7 +28,7 @@ services:
 
   frontend:
     container_name: lablecious_web
-    build: 
+    build:
       context: .
       dockerfile: DockerFile
     ports:
@@ -38,7 +38,7 @@ services:
     environment:
       - MOD=dev
     volumes:
-      - ${PWD}:/app/labelcious_web
+      - ./:/app/labelcious_web
       - /app/labelcious_web/node_modules
     depends_on:
       - backend

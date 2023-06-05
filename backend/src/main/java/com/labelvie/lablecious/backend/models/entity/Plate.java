@@ -38,3 +38,6 @@ public class Plate {
     @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
     private List<OrderPlate> orders;
 }
+
+
+
