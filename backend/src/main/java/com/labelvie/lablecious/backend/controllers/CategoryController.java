@@ -50,3 +50,11 @@ public class CategoryController {
         return ResponseEntity.noContent().build();
     }
 }
+
+/*
+    rebuild project with maven and docker-compose
+    docker-compose up --build
+    docker-compose down
+    docker-compose up
+
+ */

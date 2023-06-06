@@ -9,3 +9,4 @@ public interface PlateService {
     List<PlateDto> getAllPlates();
     PlateDto getPlateById(long id);
 }
+

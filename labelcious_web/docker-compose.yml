@@ -38,7 +38,7 @@ services:
     environment:
       - MOD=dev
     volumes:
-      - ${PWD}:/app/labelcious_web
+      - ./:/app/labelcious_web
       - /app/labelcious_web/node_modules
     depends_on:
       - backend
@@ -52,4 +52,3 @@ networks:
 volumes:
   postgres-db:
     driver: local
-
