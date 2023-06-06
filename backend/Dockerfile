@@ -1,9 +1,20 @@
+FROM maven:3.8.4 AS maven
+
+LABEL MAINTAINER="ahmedennaime20@gmail.com"
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN mvn package 
+
 FROM openjdk:17
 
-WORKDIR /app/backend
+ARG JAR_FILE=backend-0.0.1-SNAPSHOT.jar
 
-COPY target/backend-0.0.1-SNAPSHOT.jar backend.jar
+WORKDIR /opt/app
 
-EXPOSE 8082
+COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/backend.jar
 
-ENTRYPOINT ["java","-jar","/app/backend/backend.jar"]
+ENTRYPOINT ["java","-jar","/opt/app/backend.jar"]
+
