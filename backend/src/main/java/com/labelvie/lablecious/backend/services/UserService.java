@@ -1,4 +1,5 @@
 package com.labelvie.lablecious.backend.services;
 
-public class UserService {
+public interface UserService {
+
 }

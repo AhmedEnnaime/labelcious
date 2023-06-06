@@ -38,7 +38,7 @@ services:
     environment:
       - MOD=dev
     volumes:
-      - ./:/app/labelcious_web
+      - ${PWD}:/app/labelcious_web
       - /app/labelcious_web/node_modules
     depends_on:
       - backend
