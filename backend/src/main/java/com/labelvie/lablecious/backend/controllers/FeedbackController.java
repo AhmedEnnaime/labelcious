@@ -1,7 +1,9 @@
 package com.labelvie.lablecious.backend.controllers;
 
+import com.labelvie.lablecious.backend.models.dto.FeedbackDto;
 import com.labelvie.lablecious.backend.models.entity.Feedback;
 import com.labelvie.lablecious.backend.services.FeedbackService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,25 +14,28 @@ import java.util.List;
 @RequestMapping("api/feedbacks")
 public class FeedbackController {
 
-    private FeedbackService feedbackService;
+    private final FeedbackService feedbackService;
 
     public FeedbackController(FeedbackService feedbackService) {
         this.feedbackService = feedbackService;
     }
 
     @PostMapping
-    public ResponseEntity<Feedback> saveFeedback(@RequestBody Feedback feedback) {
-        return new ResponseEntity<Feedback>(feedbackService.saveFeedback(feedback), HttpStatus.CREATED);
+    public ResponseEntity<FeedbackDto> saveFeedback(@Valid @RequestBody FeedbackDto feedbackDto) {
+        FeedbackDto createdFeedback = feedbackService.saveFeedback(feedbackDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFeedback);
     }
 
     @GetMapping
-    public List<Feedback> getFeedbacks() {
-        return feedbackService.getFeedbacks();
+    public ResponseEntity<List<FeedbackDto>> getFeedbacks() {
+        List<FeedbackDto> feedbacks = feedbackService.getFeedbacks();
+        return ResponseEntity.ok(feedbacks);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Feedback> getFeedbackById(@PathVariable("id") long id) {
-        return new ResponseEntity<Feedback>(feedbackService.getFeedbackById(id), HttpStatus.OK);
+    public ResponseEntity<FeedbackDto> getFeedbackById(@PathVariable("id") long id) {
+        FeedbackDto feedback = feedbackService.getFeedbackById(id);
+        return ResponseEntity.ok(feedback);
     }
 
     @DeleteMapping("{id}")
