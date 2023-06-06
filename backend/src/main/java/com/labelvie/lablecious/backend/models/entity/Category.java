@@ -27,17 +27,3 @@ public class Category {
     private List<Plate> plates;
 
 }
-
-/*
-INSERT INTO categories (name, description, price) VALUES ('Entrées', 'Les entrées sont des plats qui sont servis avant le plat principal.', 5.00);
-
- */
-
-/*
-docker compose: (remove the container and the image) and start again
-docker-compose down
-
-
-docker-compose up --build
-
- */

@@ -1,63 +1,52 @@
 package com.labelvie.lablecious.backend.controllers;
 
 
+import com.labelvie.lablecious.backend.models.dto.CategoryDto;
 import com.labelvie.lablecious.backend.models.entity.Category;
 import com.labelvie.lablecious.backend.services.CategoryService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private  final CategoryService categoryService;
+    private final CategoryService categoryService;
+
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @GetMapping
-    public List<Category> index(){
-        return categoryService.getCategories();
+    public ResponseEntity<List<CategoryDto>> getCategories() {
+        List<CategoryDto> categories = categoryService.getCategories();
+        return ResponseEntity.ok(categories);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable long id) {
+        CategoryDto category = categoryService.getCategoryById(id);
+        return ResponseEntity.ok(category);
     }
 
     @PostMapping
-    public Category saveCategory(@RequestBody Category category) {
-        return categoryService.saveCategory(category);
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
+        CategoryDto createdCategory = categoryService.saveCategory(categoryDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable long id, @Valid @RequestBody CategoryDto categoryDto) {
+        CategoryDto updatedCategory = categoryService.updateCategory(id, categoryDto);
+        return ResponseEntity.ok(updatedCategory);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable long id) {
+        boolean deleted = categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
 }
-
-
-
-
-
-/*
-spring security problem :
-
-i have the correct  username and password ;
-in the get request it woring goog in base auth in postman
-but in the post request it is not working (401)
-
-solution :
-
-1- add this dependency in pom.xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-</dependency>
-
-2- add this class in the project
-package com.labelvie.lablecious.backend.config;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
- */
-
-
-
-
-
