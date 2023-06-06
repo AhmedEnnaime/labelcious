@@ -3,6 +3,7 @@ package com.labelvie.lablecious.backend.models.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
@@ -14,15 +15,14 @@ public class Plate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(nullable = false)
     private String name;
-
     @Column
     private String  description;
-
     @Column
     private String image;
+
+
 
     @ManyToOne
     @JsonBackReference

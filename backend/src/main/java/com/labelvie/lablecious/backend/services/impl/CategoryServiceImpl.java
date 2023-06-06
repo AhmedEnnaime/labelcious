@@ -72,18 +72,3 @@ public class CategoryServiceImpl implements CategoryService {
                 -> new ResourceNotFoundException("The category with id " + id + " does not exist"));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
