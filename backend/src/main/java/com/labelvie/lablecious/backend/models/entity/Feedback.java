@@ -17,12 +17,10 @@ public class Feedback {
     private String message;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "plate_id", nullable = false, referencedColumnName = "id")
     private Plate plate;
 }

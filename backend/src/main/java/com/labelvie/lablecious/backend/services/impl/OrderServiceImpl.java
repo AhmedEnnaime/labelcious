@@ -3,15 +3,18 @@ package com.labelvie.lablecious.backend.services.impl;
 import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
 import com.labelvie.lablecious.backend.models.dto.OrderDto;
 import com.labelvie.lablecious.backend.models.entity.Order;
+import com.labelvie.lablecious.backend.models.entity.OrderPlate;
 import com.labelvie.lablecious.backend.repository.OrderRepository;
 import com.labelvie.lablecious.backend.services.OrderService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -24,13 +27,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto saveOrder(OrderDto order) {
-        return null;
+    public OrderDto saveOrder(OrderDto orderDto) {
+        Order order = new Order();
+        updateOrderFromDto(orderDto, order);
+        Order savedOrder = orderRepository.save(order);
+        return OrderDto.fromOrder(savedOrder);
     }
 
     @Override
-    public OrderDto updateOrder(OrderDto order, long id) {
-        return null;
+    public OrderDto updateOrder(OrderDto orderDto, long id) {
+        Order existingOrder = findOrFail(id);
+        updateOrderFromDto(orderDto, existingOrder);
+        Order updatedOrder = orderRepository.save(existingOrder);
+        return OrderDto.fromOrder(updatedOrder);
     }
 
     @Override
@@ -53,6 +62,21 @@ public class OrderServiceImpl implements OrderService {
     private void updateOrderFromDto(OrderDto orderDto, Order order) {
         order.setUser(orderDto.getUser());
         order.setPlates(orderDto.getPlates());
-        order.setTotal(orderDto.getTotal());
+
+        double total = calculateTotal(orderDto.getPlates());
+        order.setTotal(total);
+
+        for (OrderPlate orderPlate : orderDto.getPlates()) {
+            orderPlate.setOrder(order);
+        }
+    }
+
+    private double calculateTotal(List<OrderPlate> orderPlates) {
+        double total = 0.0;
+        for (OrderPlate orderPlate : orderPlates) {
+            double plateTotal = orderPlate.getPlate().getCategory().getPrice() * orderPlate.getQuantity();
+            total += plateTotal;
+        }
+        return total;
     }
 }

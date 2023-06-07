@@ -28,16 +28,15 @@ public class OrderDto {
     @NotNull(message = "Order cannot be send without plates")
     private List<OrderPlate> plates;
 
-    @NotBlank
-    @Min(value = 0, message = "Price must be a positive number")
-    private double total;
-
     public static OrderDto fromOrder(Order order) {
+        List<OrderPlateDto> orderPlateDtos = order.getPlates().stream()
+                .map(OrderPlateDto::fromOrderPlate)
+                .collect(Collectors.toList());
+
         return OrderDto.builder()
                 .id(order.getId())
                 .user(order.getUser())
                 .plates(order.getPlates())
-                .total(order.getTotal())
                 .build();
     }
 
@@ -46,4 +45,6 @@ public class OrderDto {
                 .map(OrderDto::fromOrder)
                 .collect(Collectors.toList());
     }
+
+
 }

@@ -37,13 +37,16 @@ public class OrderController {
         return new  ResponseEntity<String> ("Order deleted successfully", HttpStatus.OK);
     }
 
-//    @PostMapping
-//    public ResponseEntity<OrderDto> saveOrder(@Valid @RequestBody OrderDto orderDto) {
-//
-//    }
-//
-//    @PutMapping("{id}")
-//    public ResponseEntity<OrderDto> updateOrder(@PathVariable long id, @Valid @RequestBody OrderDto orderDto) {}
+    @PostMapping
+    public ResponseEntity<OrderDto> saveOrder(@Valid @RequestBody OrderDto orderDto) {
+        OrderDto savedOrder = orderService.saveOrder(orderDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
+    }
 
+    @PutMapping("{id}")
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable long id, @Valid @RequestBody OrderDto orderDto) {
+        OrderDto updatedOrder = orderService.updateOrder(orderDto, id);
+        return ResponseEntity.ok(updatedOrder);
+    }
 
 }

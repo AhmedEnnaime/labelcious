@@ -19,6 +19,12 @@ public class User {
     @Column(name = "lname", nullable = false)
     private String lastName;
 
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
     @Column(name = "img", nullable = true)
     private String image;
 

@@ -25,7 +25,6 @@ public class Plate {
 
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private Category category;
 
