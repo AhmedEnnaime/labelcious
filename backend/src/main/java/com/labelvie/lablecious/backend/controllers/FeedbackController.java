@@ -1,7 +1,6 @@
 package com.labelvie.lablecious.backend.controllers;
 
 import com.labelvie.lablecious.backend.models.dto.FeedbackDto;
-import com.labelvie.lablecious.backend.models.entity.Feedback;
 import com.labelvie.lablecious.backend.services.FeedbackService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

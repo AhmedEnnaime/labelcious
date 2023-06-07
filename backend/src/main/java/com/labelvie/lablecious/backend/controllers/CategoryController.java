@@ -2,7 +2,6 @@ package com.labelvie.lablecious.backend.controllers;
 
 
 import com.labelvie.lablecious.backend.models.dto.CategoryDto;
-import com.labelvie.lablecious.backend.models.entity.Category;
 import com.labelvie.lablecious.backend.services.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

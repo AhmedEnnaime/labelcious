@@ -35,7 +35,7 @@ public class User {
     private String job;
 
     @Column(name = "role", nullable = false)
-    private String role;
+    private int role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks;

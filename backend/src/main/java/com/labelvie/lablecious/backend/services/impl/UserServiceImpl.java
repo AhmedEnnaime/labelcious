@@ -1,9 +1,7 @@
 package com.labelvie.lablecious.backend.services.impl;
 
 import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
-import com.labelvie.lablecious.backend.models.dto.CategoryDto;
 import com.labelvie.lablecious.backend.models.dto.UserDto;
-import com.labelvie.lablecious.backend.models.entity.Category;
 import com.labelvie.lablecious.backend.models.entity.User;
 import com.labelvie.lablecious.backend.repository.UserRepository;
 import com.labelvie.lablecious.backend.services.UserService;
@@ -35,6 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto saveUser(UserDto userDto) {
         User user = new User();
+        user.setRole(1);
         updateUserFromDto(userDto, user);
         User savedUser = userRepository.save(user);
         return UserDto.fromUser(savedUser);

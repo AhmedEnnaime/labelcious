@@ -42,7 +42,7 @@ public class UserDto {
     private String image;
 
     @NotNull
-    private String role;
+    private int role;
 
 
     public static UserDto fromUser(User user) {

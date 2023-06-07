@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
