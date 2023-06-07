@@ -25,17 +25,17 @@ public class FeedbackDto {
     private String message;
 
     @NotNull
-    private User user;
+    private long user_id;
 
     @NotNull
-    private Plate plate;
+    private long plate_id;
 
     public static FeedbackDto fromFeedback(Feedback feedback) {
         return FeedbackDto.builder()
                 .id(feedback.getId())
                 .message(feedback.getMessage())
-                .user(feedback.getUser())
-                .plate(feedback.getPlate())
+                .user_id(feedback.getUser().getId())
+                .plate_id(feedback.getPlate().getId())
                 .build();
     }
 
@@ -43,7 +43,5 @@ public class FeedbackDto {
         return feedbacks.stream()
                 .map(FeedbackDto::fromFeedback)
                 .collect(Collectors.toList());
-
     }
-
 }

@@ -41,6 +41,9 @@ public class UserDto {
 
     private String image;
 
+    @NotNull
+    private String role;
+
 
     public static UserDto fromUser(User user) {
         return UserDto.builder()
@@ -51,6 +54,7 @@ public class UserDto {
                 .password(user.getPassword())
                 .image(user.getImage())
                 .job(user.getJob())
+                .role(user.getRole())
                 .number(user.getNumber())
                 .build();
 

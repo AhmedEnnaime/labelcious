@@ -3,6 +3,8 @@ package com.labelvie.lablecious.backend.services.impl;
 import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
 import com.labelvie.lablecious.backend.models.dto.FeedbackDto;
 import com.labelvie.lablecious.backend.models.entity.Feedback;
+import com.labelvie.lablecious.backend.models.entity.Plate;
+import com.labelvie.lablecious.backend.models.entity.User;
 import com.labelvie.lablecious.backend.repository.FeedbackRepository;
 import com.labelvie.lablecious.backend.services.FeedbackService;
 import org.springframework.stereotype.Service;
@@ -53,9 +55,14 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     private void updateFeedbackFromDto(FeedbackDto feedbackDto, Feedback feedback) {
         feedback.setMessage(feedbackDto.getMessage());
-        feedback.setUser(feedbackDto.getUser());
-        feedback.setPlate(feedbackDto.getPlate());
+        User user = new User();
+        user.setId(feedbackDto.getUser_id());
+        feedback.setUser(user);
+        Plate plate = new Plate();
+        plate.setId(feedbackDto.getPlate_id());
+        feedback.setPlate(plate);
     }
+
 }
 
 //push my branch to remote : git push -u origin my_branch
