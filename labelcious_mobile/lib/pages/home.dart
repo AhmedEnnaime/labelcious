@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobilelabelcious/widgets/categoriesWidget.dart';
 import 'package:mobilelabelcious/widgets/homeAppBar.dart';
+import 'package:mobilelabelcious/widgets/platesWidget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,7 +25,7 @@ class _HomeState extends State<Home> {
         HomeAppBar(),
         Container(
           // Temporary height
-          height: 500,
+          // height: 500,
           padding: EdgeInsets.only(top: 15),
           decoration: BoxDecoration(
               color: Color(0xFFEDECF2),
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> {
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
               child: Text(
-                "Plates",
+                "Today's plates",
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -56,24 +57,25 @@ class _HomeState extends State<Home> {
             ),
 
             // Implementation of PlatesWidget
+            PlatesWidget(),
           ]),
         ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Home page"),
-              ElevatedButton(
-                  onPressed: () async {
-                    logout();
-                    if (mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: Text("Logout"))
-            ],
-          ),
-        ),
+        // Center(
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Text("Home page"),
+        //       ElevatedButton(
+        //           onPressed: () async {
+        //             logout();
+        //             if (mounted) {
+        //               Navigator.pop(context);
+        //             }
+        //           },
+        //           child: Text("Logout"))
+        //     ],
+        //   ),
+        // ),
       ],
     ));
   }
