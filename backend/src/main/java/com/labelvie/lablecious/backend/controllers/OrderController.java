@@ -1,6 +1,7 @@
 package com.labelvie.lablecious.backend.controllers;
 
 import com.labelvie.lablecious.backend.models.dto.OrderDto;
+import com.labelvie.lablecious.backend.models.dto.OrderPlateDto;
 import com.labelvie.lablecious.backend.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

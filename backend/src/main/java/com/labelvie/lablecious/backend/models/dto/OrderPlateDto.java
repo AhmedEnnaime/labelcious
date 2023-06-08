@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderPlateDto {
 
-    private long orderId;
-    private long plateId;
+    private Long orderId;
+    private Long plateId;
     private int quantity;
 
     public static OrderPlateDto fromOrderPlate(OrderPlate orderPlate) {

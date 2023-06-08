@@ -3,8 +3,6 @@ package com.labelvie.lablecious.backend.models.dto;
 import com.labelvie.lablecious.backend.models.entity.Order;
 import com.labelvie.lablecious.backend.models.entity.OrderPlate;
 import com.labelvie.lablecious.backend.models.entity.User;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,10 +21,10 @@ public class OrderDto {
     private long id;
 
     @NotNull(message = "User is required")
-    private User user;
+    private Long user_id;
 
-    @NotNull(message = "Order cannot be send without plates")
-    private List<OrderPlate> plates;
+    @NotNull(message = "Order cannot be sent without plates")
+    private List<OrderPlateDto> plates;
 
     public static OrderDto fromOrder(Order order) {
         List<OrderPlateDto> orderPlateDtos = order.getPlates().stream()
@@ -35,8 +33,8 @@ public class OrderDto {
 
         return OrderDto.builder()
                 .id(order.getId())
-                .user(order.getUser())
-                .plates(order.getPlates())
+                .user_id(order.getUser().getId())
+                .plates(orderPlateDtos)
                 .build();
     }
 
@@ -45,6 +43,4 @@ public class OrderDto {
                 .map(OrderDto::fromOrder)
                 .collect(Collectors.toList());
     }
-
-
 }

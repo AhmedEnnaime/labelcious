@@ -3,10 +3,12 @@ package com.labelvie.lablecious.backend.models.entity;
 import com.labelvie.lablecious.backend.utils.OrderPlateId;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "order_plate")
+@NoArgsConstructor
 public class OrderPlate {
 
     @EmbeddedId
