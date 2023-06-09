@@ -4,6 +4,7 @@ import 'package:mobilelabelcious/firebase_options.dart';
 import 'package:mobilelabelcious/pages/cart.dart';
 import 'package:mobilelabelcious/pages/home.dart';
 import 'package:mobilelabelcious/pages/login.dart';
+import 'package:mobilelabelcious/pages/plate.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Login(),
         '/home': (context) => Home(),
         'cart': (context) => Cart(),
+        'plate': (context) => Plate(),
       },
     );
   }

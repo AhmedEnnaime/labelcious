@@ -46,7 +46,9 @@ class _PlatesWidgetState extends State<PlatesWidget> {
                 ],
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "plate");
+                },
                 child: Container(
                   margin: EdgeInsets.all(10),
                   child: Image.asset(
