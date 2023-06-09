@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilelabelcious/firebase_options.dart';
+import 'package:mobilelabelcious/pages/cart.dart';
 import 'package:mobilelabelcious/pages/home.dart';
 import 'package:mobilelabelcious/pages/login.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Login(),
         '/home': (context) => Home(),
+        'cart': (context) => Cart(),
       },
     );
   }

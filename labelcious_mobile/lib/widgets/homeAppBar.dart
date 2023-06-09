@@ -40,7 +40,9 @@ class _HomeAppBarState extends State<HomeAppBar> {
             badgeStyle: badges.BadgeStyle(
                 badgeColor: Colors.red, padding: EdgeInsets.all(7)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, "cart");
+              },
               child: Icon(
                 Icons.shopping_bag_outlined,
                 size: 32,
