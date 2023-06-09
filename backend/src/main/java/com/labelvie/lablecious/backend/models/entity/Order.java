@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +15,6 @@ public class Order {
     private long id;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 

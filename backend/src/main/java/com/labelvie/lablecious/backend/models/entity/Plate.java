@@ -2,13 +2,15 @@ package com.labelvie.lablecious.backend.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "plates")
 public class Plate {
 
@@ -25,7 +27,6 @@ public class Plate {
 
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private Category category;
 

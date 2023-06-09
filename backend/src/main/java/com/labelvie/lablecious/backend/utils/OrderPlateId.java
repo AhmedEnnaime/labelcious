@@ -15,4 +15,5 @@ public class OrderPlateId implements Serializable {
 
     @Column(name = "plate_id")
     private Long plateId;
+
 }

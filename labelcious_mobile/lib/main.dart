@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mobilelabelcious/firebase_options.dart';
+import 'package:mobilelabelcious/pages/cart.dart';
+import 'package:mobilelabelcious/pages/home.dart';
 import 'package:mobilelabelcious/pages/login.dart';
 
 Future<void> main() async {
@@ -16,11 +18,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const Login());
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.white,
+        useMaterial3: true,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Login(),
+        '/home': (context) => Home(),
+        'cart': (context) => Cart(),
+      },
+    );
   }
 }

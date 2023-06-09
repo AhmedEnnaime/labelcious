@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,12 +16,10 @@ public class Feedback {
     private String message;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "plate_id", nullable = false, referencedColumnName = "id")
     private Plate plate;
 }

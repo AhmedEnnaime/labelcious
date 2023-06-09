@@ -1,18 +1,21 @@
 package com.labelvie.lablecious.backend.services;
 
+import com.labelvie.lablecious.backend.models.dto.OrderDto;
 import com.labelvie.lablecious.backend.models.entity.Order;
 
 import java.util.List;
 
 public interface OrderService {
 
-    List<Order> getOrders();
+    List<OrderDto> getOrders();
 
-    Order saveOrder(Order order);
+    OrderDto saveOrder(OrderDto orderDto);
 
-    Order updateOrder(Order order, long id);
+    OrderDto updateOrder(OrderDto orderDto, long id);
 
-    Order getOrderById(long id);
+    OrderDto getOrderById(long id);
 
     void deleteOrder(long id);
+
+    Order findOrFail(long id);
 }

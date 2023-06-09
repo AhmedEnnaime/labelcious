@@ -9,39 +9,10 @@ import java.util.List;
 public interface CategoryService {
 
     List<CategoryDto> getCategories();
-
     CategoryDto getCategoryById(long id);
-
     CategoryDto saveCategory(CategoryDto categoryDto);
-
     CategoryDto updateCategory(long id, CategoryDto categoryDto);
-
-    boolean deleteCategory(long id);
-
+    void deleteCategory(long id);
     Category findOrFail(long id);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

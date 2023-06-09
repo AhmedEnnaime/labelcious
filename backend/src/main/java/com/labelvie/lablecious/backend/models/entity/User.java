@@ -19,6 +19,12 @@ public class User {
     @Column(name = "lname", nullable = false)
     private String lastName;
 
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
     @Column(name = "img", nullable = true)
     private String image;
 
@@ -29,7 +35,7 @@ public class User {
     private String job;
 
     @Column(name = "role", nullable = false)
-    private String role;
+    private int role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks;

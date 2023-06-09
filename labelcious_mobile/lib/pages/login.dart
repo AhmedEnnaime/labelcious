@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobilelabelcious/pages/home.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -47,39 +47,48 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Google sign in"),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () async {
-              // Implementation of google sign in
-              await signInWithGoogle();
-            },
-            child: Container(
-              width: double.infinity,
-              height: 45,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Image.asset("assets/google.png"),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/auth_img.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 120.0, right: 20, left: 20),
+              child: GestureDetector(
+                onTap: () async {
+                  try {
+                    await signInWithGoogle();
+                  } catch (e) {
+                    print('Error signing in with Google: $e');
+                    // Handle the error
+                  }
+                },
+                child: Container(
+                  height: 65,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/google.png"),
+                      Text(
+                        "Signin with Google",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      )
+                    ],
                   ),
-                  Text(
-                    "Continue with google",
-                    style: TextStyle(fontSize: 17),
-                  )
-                ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
