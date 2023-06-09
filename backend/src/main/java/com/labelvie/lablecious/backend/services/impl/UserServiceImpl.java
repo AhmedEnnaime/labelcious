@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findOrFail(long id) {
         return userRepository.findById(id).orElseThrow(()
-                -> new ResourceNotFoundException("The User with id " + id + " does not exist"));
+                -> new ResourceNotFoundException("The User with id " + id + " does not exist !"));
     }
 
     private void updateUserFromDto(UserDto userDto, User user) {
