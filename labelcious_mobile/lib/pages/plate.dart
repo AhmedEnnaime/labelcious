@@ -1,6 +1,7 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobilelabelcious/widgets/feedbacksWidget.dart';
 import 'package:mobilelabelcious/widgets/plateAppBar.dart';
 
 class Plate extends StatefulWidget {
@@ -11,21 +12,38 @@ class Plate extends StatefulWidget {
 }
 
 class _PlateState extends State<Plate> {
+  int quantity = 1;
+
+  void incrementQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void decrementQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
-      body: ListView(
-        children: [
-          ItemAppBar(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Image.asset(
-              "assets/pastry.png",
-              height: 300,
+      body: Container(
+        child: ListView(
+          children: [
+            ItemAppBar(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                "assets/pastry.png",
+                height: 300,
+              ),
             ),
-          ),
-          Arc(
+            Arc(
               edge: Edge.TOP,
               height: 30,
               arcType: ArcType.CONVEY,
@@ -43,10 +61,11 @@ class _PlateState extends State<Plate> {
                             Text(
                               "Plate title",
                               style: TextStyle(
-                                  fontSize: 28,
-                                  color: Color(0xFF4C53A5),
-                                  fontWeight: FontWeight.bold),
-                            )
+                                fontSize: 28,
+                                color: Color(0xFF4C53A5),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -59,8 +78,9 @@ class _PlateState extends State<Plate> {
                               alignment: Alignment.center,
                               height: 50,
                               decoration: BoxDecoration(
-                                  color: Color(0xFF4C53A5),
-                                  borderRadius: BorderRadius.circular(20)),
+                                color: Color(0xFF4C53A5),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
                               child: ElevatedButton.icon(
                                 onPressed: () {},
                                 icon: Icon(
@@ -70,16 +90,22 @@ class _PlateState extends State<Plate> {
                                 label: Text(
                                   "Add To Cart",
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Color(0xFF4C53A5)),
-                                    padding: MaterialStateProperty.all(
-                                        EdgeInsets.symmetric(
-                                            vertical: 13, horizontal: 15))),
+                                  backgroundColor: MaterialStateProperty.all(
+                                    Color(0xFF4C53A5),
+                                  ),
+                                  padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(
+                                      vertical: 13,
+                                      horizontal: 15,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             Row(
@@ -87,58 +113,63 @@ class _PlateState extends State<Plate> {
                                 Container(
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey,
-                                            spreadRadius: 3,
-                                            blurRadius: 10,
-                                            offset: Offset(0, 3))
-                                      ]),
-                                  child: Icon(
-                                    CupertinoIcons.minus,
-                                    size: 18,
-                                    color: Color(0xFF4C53A5),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey,
+                                        spreadRadius: 3,
+                                        blurRadius: 10,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: IconButton(
+                                    icon: Icon(CupertinoIcons.minus,
+                                        size: 18, color: Color(0xFF4C53A5)),
+                                    onPressed: decrementQuantity,
                                   ),
                                 ),
                                 Container(
                                   margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: Text(
-                                    "01",
+                                    quantity.toString().padLeft(2),
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF4C53A5)),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF4C53A5),
+                                    ),
                                   ),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey,
-                                            spreadRadius: 3,
-                                            blurRadius: 10,
-                                            offset: Offset(0, 3))
-                                      ]),
-                                  child: Icon(
-                                    CupertinoIcons.plus,
-                                    size: 18,
-                                    color: Color(0xFF4C53A5),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey,
+                                        spreadRadius: 3,
+                                        blurRadius: 10,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
                                   ),
-                                )
+                                  child: IconButton(
+                                    icon: Icon(CupertinoIcons.plus,
+                                        size: 18, color: Color(0xFF4C53A5)),
+                                    onPressed: incrementQuantity,
+                                  ),
+                                ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(
-                          "The following plate is a cousous with some legumes and you have the choice to choose between either meat or chicken with it.",
+                          "The following plate is a cousous with some vegetables and you have the choice to choose between either meat or chicken with it.",
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 17,
@@ -149,10 +180,17 @@ class _PlateState extends State<Plate> {
                     ],
                   ),
                 ),
-              )),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              child: feedbacksWidget(),
+            ),
 
-          // Implementing feedbacks section
-        ],
+            // Displaying the feedbacks widget
+          ],
+        ),
       ),
     );
   }

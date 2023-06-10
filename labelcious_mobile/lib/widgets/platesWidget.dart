@@ -23,28 +23,6 @@ class _PlatesWidgetState extends State<PlatesWidget> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        color: Color(0xFF4C53A5),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "-50%",
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Icon(
-                    Icons.favorite_border,
-                    color: Colors.red,
-                  )
-                ],
-              ),
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, "plate");

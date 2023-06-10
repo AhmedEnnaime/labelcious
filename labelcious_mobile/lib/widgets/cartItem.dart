@@ -9,6 +9,22 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
+  int quantity = 1;
+
+  void incrementQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void decrementQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -79,15 +95,18 @@ class _CartItemState extends State<CartItem> {
                               ),
                             ],
                           ),
-                          child: Icon(
-                            CupertinoIcons.plus,
-                            size: 18,
+                          child: IconButton(
+                            icon: Icon(
+                              CupertinoIcons.minus,
+                              size: 18,
+                            ),
+                            onPressed: decrementQuantity,
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            "01",
+                            quantity.toString().padLeft(2),
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -108,9 +127,12 @@ class _CartItemState extends State<CartItem> {
                               ),
                             ],
                           ),
-                          child: Icon(
-                            CupertinoIcons.minus,
-                            size: 18,
+                          child: IconButton(
+                            icon: Icon(
+                              CupertinoIcons.plus,
+                              size: 18,
+                            ),
+                            onPressed: incrementQuantity,
                           ),
                         ),
                       ],
