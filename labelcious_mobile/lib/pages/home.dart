@@ -87,6 +87,7 @@ class _HomeState extends State<Home> {
           onTap: (index) {},
           height: 70,
           color: Color(0xFF4C53A5),
+          index: 1,
           items: [
             Icon(
               Icons.person,
