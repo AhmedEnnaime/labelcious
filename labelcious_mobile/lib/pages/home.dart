@@ -1,7 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobilelabelcious/widgets/categoriesWidget.dart';
 import 'package:mobilelabelcious/widgets/homeAppBar.dart';
 import 'package:mobilelabelcious/widgets/platesWidget.dart';
@@ -15,11 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Future<void> logout() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    await googleSignIn.signOut();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,22 +58,6 @@ class _HomeState extends State<Home> {
               PlatesWidget(),
             ]),
           ),
-          // Center(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       Text("Home page"),
-          //       ElevatedButton(
-          //           onPressed: () async {
-          //             logout();
-          //             if (mounted) {
-          //               Navigator.pop(context);
-          //             }
-          //           },
-          //           child: Text("Logout"))
-          //     ],
-          //   ),
-          // ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -89,10 +67,11 @@ class _HomeState extends State<Home> {
           color: Color(0xFF4C53A5),
           index: 1,
           items: [
-            Icon(
-              Icons.person,
-              size: 30,
-              color: Colors.white,
+            IconButton(
+              icon: Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                Navigator.pushNamed(context, "profile");
+              },
             ),
             Icon(
               Icons.home,

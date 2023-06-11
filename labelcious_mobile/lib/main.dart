@@ -5,6 +5,7 @@ import 'package:mobilelabelcious/pages/cart.dart';
 import 'package:mobilelabelcious/pages/home.dart';
 import 'package:mobilelabelcious/pages/login.dart';
 import 'package:mobilelabelcious/pages/plate.dart';
+import 'package:mobilelabelcious/pages/profile.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Home(),
         'cart': (context) => Cart(),
         'plate': (context) => Plate(),
+        'profile': (context) => Profile(),
       },
     );
   }
