@@ -1,11 +1,14 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mobilelabelcious/controllers/PlateController.dart';
+import 'package:mobilelabelcious/models/Plate.dart' as Model;
 import 'package:mobilelabelcious/widgets/feedbacksWidget.dart';
 import 'package:mobilelabelcious/widgets/plateAppBar.dart';
 
 class Plate extends StatefulWidget {
-  const Plate({super.key});
+  const Plate({Key? key}) : super(key: key);
 
   @override
   State<Plate> createState() => _PlateState();
@@ -30,6 +33,11 @@ class _PlateState extends State<Plate> {
 
   @override
   Widget build(BuildContext context) {
+    PlateController plateController = Get.find<PlateController>();
+
+    // Access the selected plate
+    Model.Plate selectedPlate = plateController.selectedPlate.value;
+
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
       body: Container(
@@ -59,7 +67,7 @@ class _PlateState extends State<Plate> {
                         child: Row(
                           children: [
                             Text(
-                              "Plate title",
+                              selectedPlate.name ?? '',
                               style: TextStyle(
                                 fontSize: 28,
                                 color: Color(0xFF4C53A5),
@@ -169,7 +177,7 @@ class _PlateState extends State<Plate> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(
-                          "The following plate is a cousous with some vegetables and you have the choice to choose between either meat or chicken with it.",
+                          selectedPlate.description ?? '',
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             fontSize: 17,
@@ -187,7 +195,6 @@ class _PlateState extends State<Plate> {
                   color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: feedbacksWidget(),
             ),
-
             // Displaying the feedbacks widget
           ],
         ),

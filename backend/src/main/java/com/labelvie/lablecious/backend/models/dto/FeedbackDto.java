@@ -30,12 +30,15 @@ public class FeedbackDto {
     @NotNull
     private long plate_id;
 
+    private UserDto user;  // Add UserDto field
+
     public static FeedbackDto fromFeedback(Feedback feedback) {
         return FeedbackDto.builder()
                 .id(feedback.getId())
                 .message(feedback.getMessage())
                 .user_id(feedback.getUser().getId())
                 .plate_id(feedback.getPlate().getId())
+                .user(UserDto.fromUser(feedback.getUser()))  // Map User to UserDto
                 .build();
     }
 

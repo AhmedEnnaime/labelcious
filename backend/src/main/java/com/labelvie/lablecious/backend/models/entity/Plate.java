@@ -24,12 +24,11 @@ public class Plate {
     @Column
     private String image;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private Category category;
 
+    @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
+
 }
-
-
-

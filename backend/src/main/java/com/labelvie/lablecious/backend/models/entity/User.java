@@ -1,5 +1,6 @@
 package com.labelvie.lablecious.backend.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,6 +39,7 @@ public class User {
     private int role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

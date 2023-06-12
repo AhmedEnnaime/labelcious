@@ -6,6 +6,8 @@ import 'package:mobilelabelcious/services/PlateService.dart';
 class PlateController extends GetxController {
   var platesList = <Plate>[].obs;
 
+  var selectedPlate = Plate().obs;
+
   @override
   void onInit() {
     final categoryController = Get.find<CategoryController>();
@@ -29,5 +31,10 @@ class PlateController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  void selectPlate(Plate plate) {
+    selectedPlate.value = plate;
+    print('Selected Plate : $plate');
   }
 }

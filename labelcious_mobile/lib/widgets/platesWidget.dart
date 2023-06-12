@@ -49,6 +49,7 @@ class PlatesWidget extends GetWidget<PlateController> {
                   children: [
                     InkWell(
                       onTap: () {
+                        plateController.selectPlate(plate);
                         Navigator.pushNamed(context, "plate");
                       },
                       child: Container(
