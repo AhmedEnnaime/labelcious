@@ -1,17 +1,32 @@
 import 'package:get/get.dart';
-import 'package:mobilelabelcious/pages/plate.dart';
+import 'package:mobilelabelcious/controllers/CategoryController.dart';
+import 'package:mobilelabelcious/models/Plate.dart';
+import 'package:mobilelabelcious/services/PlateService.dart';
 
 class PlateController extends GetxController {
-  var platesList = <Plate>[].obs();
+  var platesList = <Plate>[].obs;
 
   @override
   void onInit() {
-    getPlatesByCategoryId();
+    final categoryController = Get.find<CategoryController>();
+    ever(categoryController.selectedCategoryIndex, (_) {
+      getPlatesByCategoryId();
+    });
     super.onInit();
   }
 
   void getPlatesByCategoryId() async {
-    try {} catch (e) {
+    CategoryController categoryController = Get.find<CategoryController>();
+    int selectedCategoryId = categoryController.selectedCategoryIndex.value;
+
+    try {
+      platesList.clear();
+      var plates = await PlateService.fetchPlates(selectedCategoryId);
+      print('Plates: $plates');
+      if (plates.isNotEmpty) {
+        platesList.value = plates;
+      }
+    } catch (e) {
       print(e);
     }
   }

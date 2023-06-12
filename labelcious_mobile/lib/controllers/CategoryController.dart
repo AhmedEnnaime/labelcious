@@ -5,7 +5,7 @@ import 'package:mobilelabelcious/services/CategoryService.dart';
 class CategoryController extends GetxController {
   var categoriesList = <Category>[].obs;
 
-  var selectedCategoryIndex = 0.obs;
+  var selectedCategoryIndex = 1.obs;
 
   @override
   void onInit() {
