@@ -47,5 +47,11 @@ public class PlateController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<PlateDto>> getPlatesByCategoryId(@PathVariable long id) {
+        List<PlateDto> plates = plateService.getPlatesByCategoryId(id);
+        return ResponseEntity.ok(plates);
+    }
+
 }
 

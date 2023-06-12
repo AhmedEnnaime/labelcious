@@ -5,8 +5,8 @@ class PlateService {
   static var client = http.Client();
 
   static Future<List<Plate>> fetchPlates(int category_id) async {
-    var response = await client
-        .get(Uri.parse('http://localhost:8082/api/plates/${category_id}'));
+    var response = await client.get(
+        Uri.parse('http://localhost:8082/api/plates/category/${category_id}'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
       var plates = plateFromJson(jsonString);

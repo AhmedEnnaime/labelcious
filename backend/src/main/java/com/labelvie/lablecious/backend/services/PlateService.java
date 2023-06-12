@@ -11,6 +11,6 @@ public interface PlateService {
     PlateDto savePlate(PlateDto plateDto);
     PlateDto updatePlate(long id, PlateDto plateDto);
     void deletePlate(long id);
-
     Plate findOrFail(long id);
+    List<PlateDto>  getPlatesByCategoryId(long id);
 }
