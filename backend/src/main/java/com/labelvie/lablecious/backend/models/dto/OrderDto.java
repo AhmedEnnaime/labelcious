@@ -27,14 +27,12 @@ public class OrderDto {
     private List<OrderPlateDto> plates;
 
     public static OrderDto fromOrder(Order order) {
-        List<OrderPlateDto> orderPlateDtos = order.getPlates().stream()
-                .map(OrderPlateDto::fromOrderPlate)
-                .collect(Collectors.toList());
+
 
         return OrderDto.builder()
                 .id(order.getId())
                 .user_id(order.getUser().getId())
-                .plates(orderPlateDtos)
+
                 .build();
     }
 

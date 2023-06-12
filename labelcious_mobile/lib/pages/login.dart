@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
           await auth.signInWithCredential(credential);
       print(googleUser);
       print(credential);
-      Navigator.push(context, MaterialPageRoute(builder: (_) => const Home()));
+      Navigator.push(context, MaterialPageRoute(builder: (_) => Home()));
     } else {
       // Show an error message
       ScaffoldMessenger.of(context).showSnackBar(

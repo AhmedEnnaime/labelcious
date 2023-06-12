@@ -21,7 +21,4 @@ public class Order {
     @Column(nullable = false)
     private double total;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderPlate> plates;
-
 }

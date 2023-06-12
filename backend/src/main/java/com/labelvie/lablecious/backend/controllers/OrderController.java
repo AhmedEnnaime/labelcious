@@ -2,6 +2,8 @@ package com.labelvie.lablecious.backend.controllers;
 
 import com.labelvie.lablecious.backend.models.dto.OrderDto;
 import com.labelvie.lablecious.backend.models.dto.OrderPlateDto;
+import com.labelvie.lablecious.backend.models.entity.OrderPlate;
+import com.labelvie.lablecious.backend.services.OrderPlateService;
 import com.labelvie.lablecious.backend.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,11 @@ public class OrderController {
 
     private OrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    private OrderPlateService orderPlateService;
+
+    public OrderController(OrderService orderService, OrderPlateService orderPlateService) {
         this.orderService = orderService;
+        this.orderPlateService = orderPlateService;
     }
 
     @GetMapping
@@ -39,15 +44,15 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> saveOrder(@Valid @RequestBody OrderDto orderDto) {
-        OrderDto savedOrder = orderService.saveOrder(orderDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
+    public ResponseEntity<OrderPlate> saveOrder(@Valid @RequestBody OrderPlate orderPlate) {
+        OrderPlate savedOrder = orderPlateService.saveOrder(orderPlate);
+        return ResponseEntity.ok(savedOrder);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<OrderDto> updateOrder(@PathVariable long id, @Valid @RequestBody OrderDto orderDto) {
-        OrderDto updatedOrder = orderService.updateOrder(orderDto, id);
-        return ResponseEntity.ok(updatedOrder);
-    }
+//    @PutMapping("{id}")
+//    public ResponseEntity<OrderDto> updateOrder(@PathVariable long id, @Valid @RequestBody OrderDto orderDto) {
+//        OrderDto updatedOrder = orderService.updateOrder(orderDto, id);
+//        return ResponseEntity.ok(updatedOrder);
+//    }
 
 }

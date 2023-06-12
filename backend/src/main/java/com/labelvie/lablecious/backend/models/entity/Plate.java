@@ -25,19 +25,10 @@ public class Plate {
     private String image;
 
 
-
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
     private Category category;
 
-    @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
-    private List<Feedback> feedbacks;
-
-    @OneToMany(mappedBy = "plate")
-    private List<MenuPlate> menus;
-
-    @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
-    private List<OrderPlate> orders;
 }
 
 

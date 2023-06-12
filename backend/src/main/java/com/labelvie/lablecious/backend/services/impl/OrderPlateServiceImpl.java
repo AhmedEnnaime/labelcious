@@ -25,34 +25,31 @@ public class OrderPlateServiceImpl implements OrderPlateService {
         this.plateRepository = plateRepository;
     }
 
-    @Override
-    public List<OrderPlateDto> getOrdersPlates() {
-        return null;
-    }
+
+
+//    public void updateOrderPlateFromDto(OrderDto orderDto, Order order) {
+//
+//        List<OrderPlateDto> orderPlateDtos = orderDto.getPlates();
+//
+//        for (OrderPlateDto orderPlateDto : orderPlateDtos) {
+//            Plate plate = plateRepository.findById(orderPlateDto.getPlateId())
+//                    .orElseThrow(() -> new ResourceNotFoundException("Plate not found with ID: " + orderPlateDto.getPlateId()));
+//
+////            System.out.println(plate);
+////            System.exit(0);
+//            OrderPlate orderPlate = new OrderPlate();
+//            orderPlate.setOrder(order);
+//            orderPlate.setPlate(plate);
+//            orderPlate.setQuantity(orderPlateDto.getQuantity());
+//
+//        }
+//
+//    }
 
     @Override
-    public OrderPlateDto saveOrderPlate(OrderPlateDto orderPlateDto) {
-        OrderPlate orderPlate = new OrderPlate();
-
-        return null;
-    }
-
-    public void updateOrderPlateFromDto(OrderDto orderDto, Order order) {
-
-        List<OrderPlateDto> orderPlateDtos = orderDto.getPlates();
-
-        for (OrderPlateDto orderPlateDto : orderPlateDtos) {
-            Plate plate = plateRepository.findById(orderPlateDto.getPlateId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Plate not found with ID: " + orderPlateDto.getPlateId()));
-
-//            System.out.println(plate);
-//            System.exit(0);
-            OrderPlate orderPlate = new OrderPlate();
-            orderPlate.setOrder(order);
-            orderPlate.setPlate(plate);
-            orderPlate.setQuantity(orderPlateDto.getQuantity());
-
-        }
-
+    public OrderPlate saveOrder(OrderPlate orderPlate) {
+        Order order = new Order();
+        order.setTotal(45);
+        return orderPlateRepository.save(orderPlate);
     }
 }

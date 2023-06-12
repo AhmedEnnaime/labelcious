@@ -42,51 +42,51 @@ public class OrderServiceImpl implements OrderService {
         return OrderDto.fromOrders(orders);
     }
 
-    @Override
-    public OrderDto saveOrder(OrderDto orderDto) {
-        Order order = new Order();
-        User user = new User();
-        user.setId(orderDto.getUser_id());
-        order.setUser(user);
-        double total = calculateTotal(orderDto.getPlates());
-        order.setTotal(total);
-//        order.setId(1);
-//        System.out.println(order);
-//        System.exit(1);
+//    @Override
+//    public OrderDto saveOrder(OrderDto orderDto) {
+//        Order order = new Order();
+//        User user = new User();
+//        user.setId(orderDto.getUser_id());
+//        order.setUser(user);
+//        double total = calculateTotal(orderDto.getPlates());
+//        order.setTotal(total);
+////        order.setId(1);
+////        System.out.println(order);
+////        System.exit(1);
+//
+//
+//        List<OrderPlate> orderPlates = new ArrayList<>();
+////        System.out.println(order);
+////        System.exit(1);
+//        for (OrderPlateDto orderPlateDto : orderDto.getPlates()) {
+//            OrderPlate orderPlate = new OrderPlate();
+//
+//            orderPlate.setOrder(order);
+//
+//            orderPlate.setPlate(plateRepository.findById(orderPlateDto.getPlateId()).orElse(null));
+//
+//            orderPlate.setQuantity(orderPlateDto.getQuantity());
+//
+//            orderPlates.add(orderPlate);
+//
+//        }
+//
+//        order.setPlates(orderPlates);
+//
+//        Order savedOrder = orderRepository.save(order);
+//        return OrderDto.fromOrder(savedOrder);
+//    }
 
 
-        List<OrderPlate> orderPlates = new ArrayList<>();
-//        System.out.println(order);
-//        System.exit(1);
-        for (OrderPlateDto orderPlateDto : orderDto.getPlates()) {
-            OrderPlate orderPlate = new OrderPlate();
-
-            orderPlate.setOrder(order);
-
-            orderPlate.setPlate(plateRepository.findById(orderPlateDto.getPlateId()).orElse(null));
-
-            orderPlate.setQuantity(orderPlateDto.getQuantity());
-
-            orderPlates.add(orderPlate);
-
-        }
-
-        order.setPlates(orderPlates);
-
-        Order savedOrder = orderRepository.save(order);
-        return OrderDto.fromOrder(savedOrder);
-    }
 
 
-
-
-    @Override
-    public OrderDto updateOrder(OrderDto orderDto, long id) {
-        Order existingOrder = findOrFail(id);
-        updateOrderFromDto(orderDto, existingOrder);
-        Order updatedOrder = orderRepository.save(existingOrder);
-        return OrderDto.fromOrder(updatedOrder);
-    }
+//    @Override
+//    public OrderDto updateOrder(OrderDto orderDto, long id) {
+//        Order existingOrder = findOrFail(id);
+//        updateOrderFromDto(orderDto, existingOrder);
+//        Order updatedOrder = orderRepository.save(existingOrder);
+//        return OrderDto.fromOrder(updatedOrder);
+//    }
 
     @Override
     public OrderDto getOrderById(long id) {

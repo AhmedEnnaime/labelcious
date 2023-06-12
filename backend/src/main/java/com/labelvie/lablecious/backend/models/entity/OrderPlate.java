@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.labelvie.lablecious.backend.utils.OrderPlateId;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,18 +10,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderPlate {
 
-    @EmbeddedId
-    private OrderPlateId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @ManyToOne
-    @MapsId("orderId")
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @ManyToOne
-    @MapsId("plateId")
-    @JoinColumn(name = "plate_id")
+    @JoinColumn(name = "plate_id", nullable = false, referencedColumnName = "id")
     private Plate plate;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false, referencedColumnName = "id")
+    private Order order;
+
+    @Column(nullable = false)
     private int quantity;
 }

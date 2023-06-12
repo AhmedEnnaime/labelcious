@@ -9,9 +9,9 @@ public interface OrderService {
 
     List<OrderDto> getOrders();
 
-    OrderDto saveOrder(OrderDto orderDto);
+//    OrderDto saveOrder(OrderDto orderDto);
 
-    OrderDto updateOrder(OrderDto orderDto, long id);
+//    OrderDto updateOrder(OrderDto orderDto, long id);
 
     OrderDto getOrderById(long id);
 
