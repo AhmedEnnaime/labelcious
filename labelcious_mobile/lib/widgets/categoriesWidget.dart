@@ -13,7 +13,6 @@ class CategoriesWidget extends GetWidget<CategoryController> {
             for (var category in controller.categoriesList)
               GestureDetector(
                 onTap: () {
-                  print(category.id);
                   controller.selectCategory(category.id ?? 0);
                 },
                 child: Obx(() {
