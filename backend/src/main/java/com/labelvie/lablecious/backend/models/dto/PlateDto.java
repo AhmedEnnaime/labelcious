@@ -28,7 +28,7 @@ public class PlateDto {
 
     private CategoryDto category;
 
-    private List<FeedbackDto> feedback;  // Add List of FeedbackDto field
+    private List<FeedbackDto> feedbacks;  // Add List of FeedbackDto field
 
     public static PlateDto fromPlate(Plate plate) {
         return PlateDto.builder()
@@ -38,7 +38,7 @@ public class PlateDto {
                 .image(plate.getImage())
                 .category(CategoryDto.fromCategory(plate.getCategory()))
                 .categoryId(plate.getCategory().getId())
-                .feedback(FeedbackDto.fromFeedbacks(plate.getFeedbacks()))  // Map Feedbacks to FeedbackDtos
+                .feedbacks(FeedbackDto.fromFeedbacks(plate.getFeedbacks()))  // Map Feedbacks to FeedbackDtos
                 .build();
     }
 

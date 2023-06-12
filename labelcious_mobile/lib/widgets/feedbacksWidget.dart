@@ -1,16 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mobilelabelcious/controllers/PlateController.dart';
+import 'package:mobilelabelcious/models/Plate.dart' as Model;
+import 'package:mobilelabelcious/models/Feedback.dart' as FeedbackModel;
 
-class feedbacksWidget extends StatefulWidget {
-  const feedbacksWidget({super.key});
+class FeedbacksWidget extends StatefulWidget {
+  const FeedbacksWidget({Key? key});
 
   @override
-  State<feedbacksWidget> createState() => _feedbacksWidgetState();
+  State<FeedbacksWidget> createState() => _FeedbacksWidgetState();
 }
 
-class _feedbacksWidgetState extends State<feedbacksWidget> {
+class _FeedbacksWidgetState extends State<FeedbacksWidget> {
   @override
   Widget build(BuildContext context) {
+    PlateController plateController = Get.find<PlateController>();
+
+    // Access the selected plate
+    Model.Plate selectedPlate = plateController.selectedPlate.value;
+
+    List<FeedbackModel.Feedback>? feedbacks = selectedPlate.feedbacks;
+
     return Container(
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
@@ -31,26 +42,41 @@ class _feedbacksWidgetState extends State<feedbacksWidget> {
               ),
             ),
           ),
-          for (int i = 0; i < 7; i++)
-            ListTile(
-              leading: Icon(
-                Icons.person_2,
-                size: 30,
-              ),
-              title: Text(
-                "Abdelilah El asri",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF4C53A5),
-                    fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(
-                "This chicken plate is so good i hope it's prepared every day",
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 14,
+          if (feedbacks != null && feedbacks.isNotEmpty)
+            for (int i = 0; i < feedbacks.length; i++)
+              ListTile(
+                leading: Icon(
+                  Icons.person_2,
+                  size: 30,
+                ),
+                title: Text(
+                  '${feedbacks[i].user?.firstName ?? "Anonymous"} ${feedbacks[i].user?.lastName ?? ""}',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFF4C53A5),
+                      fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  feedbacks[i].message ?? "",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
                 ),
               ),
+          if (feedbacks == null || feedbacks.isEmpty)
+            Column(
+              children: [
+                Image.asset(
+                  'assets/not_found.png',
+                  width: 200,
+                  height: 200,
+                ),
+                Text(
+                  "No feedback available.",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
             ),
           ListTile(
             leading: Icon(
