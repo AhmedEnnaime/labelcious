@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobilelabelcious/controllers/FeedbackController.dart';
 import 'package:mobilelabelcious/firebase_options.dart';
 import 'package:mobilelabelcious/pages/cart.dart';
 import 'package:mobilelabelcious/pages/home.dart';
@@ -11,6 +12,7 @@ import 'package:mobilelabelcious/pages/profile.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Get.put(FeedbackController());
   runApp(const MyApp());
 }
 

@@ -19,9 +19,6 @@ class UserController extends GetxController {
       firstName = nameParts[0];
     }
 
-    print("google id: ${googleUser.id}");
-    var userId = int.tryParse(googleUser.id) ?? 5;
-
     var newUser = User(
       id: googleUser.id.hashCode,
       firstName: firstName,

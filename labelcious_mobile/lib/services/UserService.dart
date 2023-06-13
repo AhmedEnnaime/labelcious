@@ -7,8 +7,8 @@ class UserService {
   static var client = http.Client();
 
   static Future<User?> addUser(User user) async {
-    var requestBody = singleUserToJson(user);
-    print('Request body: $requestBody');
+    // var requestBody = singleUserToJson(user);
+    // print('Request body: $requestBody');
     var response = await client.post(
       Uri.parse('http://localhost:8082/api/users/signup'),
       body: singleUserToJson(user),

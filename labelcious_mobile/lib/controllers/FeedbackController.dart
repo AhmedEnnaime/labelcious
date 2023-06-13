@@ -6,6 +6,8 @@ import 'package:mobilelabelcious/models/Plate.dart';
 import 'package:mobilelabelcious/services/FeedbackService.dart';
 
 class FeedbackController extends GetxController {
+  RxList<Feedback> feedbacks = <Feedback>[].obs;
+
   void addFeedback(Feedback feedback) async {
     UserController userController = Get.find<UserController>();
     PlateController plateController = Get.find<PlateController>();
@@ -13,17 +15,18 @@ class FeedbackController extends GetxController {
 
     var newFeedback = Feedback(
       message: feedback.message,
-      user_id: int.parse(userController.googleUser!.id),
+      user_id: userController.googleUser!.id.hashCode,
       plate_id: plate.id,
     );
     try {
-      var addFeedback = FeedbackService.addFeedback(newFeedback);
-      if (addFeedback != null) {
+      var addedFeedback = await FeedbackService.addFeedback(newFeedback);
+      if (addedFeedback != null) {
+        feedbacks.add(addedFeedback); // Add the new feedback to the list
         print("Feedback added successfully");
       }
     } catch (e) {
-      print("error: ${e}");
-      throw Exception(e);
+      print("Error: $e");
+      rethrow;
     }
   }
 }

@@ -7,6 +7,8 @@ class FeedbackService {
   static var client = http.Client();
 
   static Future<Feedback?> addFeedback(Feedback feedback) async {
+    var requestBody = singleFeedbackToJson(feedback);
+    print('Request body: $requestBody');
     var response = await client.post(
       Uri.parse('http://localhost:8082/api/feedbacks'),
       body: singleFeedbackToJson(feedback),
