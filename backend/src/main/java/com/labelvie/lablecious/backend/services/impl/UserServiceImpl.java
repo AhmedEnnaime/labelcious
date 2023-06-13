@@ -32,11 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto saveUser(UserDto userDto) {
-        User user = new User();
-        user.setRole(1);
-        updateUserFromDto(userDto, user);
-        User savedUser = userRepository.save(user);
-        return UserDto.fromUser(savedUser);
+        userDto.setRole(1);
+        User user = userDto.toUser();
+        return UserDto.fromUser(userRepository.save(user));
     }
 
     @Override
@@ -79,7 +77,6 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
         user.setImage(userDto.getImage());
         user.setJob(userDto.getJob());
         user.setNumber(userDto.getNumber());

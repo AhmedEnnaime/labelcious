@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
       final UserCredential userCredential =
           await auth.signInWithCredential(credential);
       print(googleUser);
-      print(credential);
+      print(userCredential);
       userController.signupFromGoogle(googleUser);
       userController.setGoogleUser(googleUser);
       Navigator.push(context, MaterialPageRoute(builder: (_) => Home()));

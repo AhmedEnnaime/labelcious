@@ -7,6 +7,8 @@ import com.labelvie.lablecious.backend.models.entity.Plate;
 import com.labelvie.lablecious.backend.models.entity.User;
 import com.labelvie.lablecious.backend.repository.FeedbackRepository;
 import com.labelvie.lablecious.backend.services.FeedbackService;
+import com.labelvie.lablecious.backend.services.PlateService;
+import com.labelvie.lablecious.backend.services.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,14 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     private final FeedbackRepository feedbackRepository;
 
-    public FeedbackServiceImpl(FeedbackRepository feedbackRepository) {
+    private final PlateService plateService;
+
+    private final UserService userService;
+
+    public FeedbackServiceImpl(FeedbackRepository feedbackRepository, PlateService plateService, UserService userService) {
         this.feedbackRepository = feedbackRepository;
+        this.plateService = plateService;
+        this.userService = userService;
     }
 
 
@@ -30,10 +38,10 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public FeedbackDto saveFeedback(FeedbackDto feedbackDto) {
-        Feedback feedback = new Feedback();
-        updateFeedbackFromDto(feedbackDto, feedback);
-        Feedback savedFeedback = feedbackRepository.save(feedback);
-        return FeedbackDto.fromFeedback(savedFeedback);
+        Feedback feedback = feedbackDto.toFeedback();
+        feedback.setPlate(plateService.findOrFail(feedbackDto.getPlate_id()));
+        feedback.setUser(userService.findOrFail(feedbackDto.getUser_id()));
+        return FeedbackDto.fromFeedback(feedbackRepository.save(feedback));
     }
 
     @Override
@@ -53,16 +61,5 @@ public class FeedbackServiceImpl implements FeedbackService {
                 -> new ResourceNotFoundException("The Feedback with id " + id + " does not exist"));
     }
 
-    private void updateFeedbackFromDto(FeedbackDto feedbackDto, Feedback feedback) {
-        feedback.setMessage(feedbackDto.getMessage());
-        User user = new User();
-        user.setId(feedbackDto.getUser_id());
-        feedback.setUser(user);
-        Plate plate = new Plate();
-        plate.setId(feedbackDto.getPlate_id());
-        feedback.setPlate(plate);
-    }
 
 }
-
-//push my branch to remote : git push -u origin my_branch

@@ -13,7 +13,6 @@ class User {
   String? firstName;
   String? lastName;
   String? email;
-  String? password;
   String? image;
   String? job;
   String? number;
@@ -24,7 +23,6 @@ class User {
     this.firstName,
     this.lastName,
     this.email,
-    this.password,
     this.image,
     this.job,
     this.number,
@@ -36,7 +34,6 @@ class User {
         firstName: json["firstName"],
         lastName: json["lastName"],
         email: json["email"],
-        password: json["password"],
         image: json["image"],
         job: json["job"],
         number: json["number"],
@@ -48,7 +45,6 @@ class User {
         "firstName": firstName,
         "lastName": lastName,
         "email": email,
-        "password": password,
         "image": image,
       };
 }

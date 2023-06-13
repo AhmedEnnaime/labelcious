@@ -106,12 +106,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private void updateOrderFromDto(OrderDto orderDto, Order order) {
-        User user = new User();
-        user.setId(orderDto.getUser_id());
-        order.setUser(user);
-
-        double total = calculateTotal(orderDto.getPlates());
-        order.setTotal(total);
+//        User user = new User();
+//        user.setId(orderDto.getUser_id());
+//        order.setUser(user);
+//
+//        double total = calculateTotal(orderDto.getPlates());
+//        order.setTotal(total);
 
     }
 

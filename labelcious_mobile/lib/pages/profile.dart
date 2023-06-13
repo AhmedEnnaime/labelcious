@@ -132,22 +132,6 @@ class _ProfileState extends State<Profile> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                        label: Text("Password"),
-                        prefixIcon: Icon(
-                          LineAwesomeIcons.fingerprint,
-                          size: 30,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 2, color: Colors.black))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
                         label: Text("Badge number"),
                         prefixIcon: Icon(
                           LineAwesomeIcons.identification_badge,

@@ -47,4 +47,11 @@ public class FeedbackDto {
                 .map(FeedbackDto::fromFeedback)
                 .collect(Collectors.toList());
     }
+
+    public Feedback toFeedback() {
+        return Feedback.builder()
+                .id(this.getId())
+                .message(this.getMessage())
+                .build();
+    }
 }

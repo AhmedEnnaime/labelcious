@@ -18,7 +18,8 @@ class FeedbackService {
       var newFeedback = Feedback.fromJson(json.decode(jsonString));
       return newFeedback;
     } else {
-      throw Exception("Failed to add feedback.");
+      print("error");
+      return null;
     }
   }
 }

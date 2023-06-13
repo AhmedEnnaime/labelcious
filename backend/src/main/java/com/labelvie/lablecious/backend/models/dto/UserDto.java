@@ -1,5 +1,6 @@
 package com.labelvie.lablecious.backend.models.dto;
 
+import com.labelvie.lablecious.backend.models.entity.Plate;
 import com.labelvie.lablecious.backend.models.entity.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserDto {
 
+    @NotNull(message = "Id is required")
     private long id;
 
     @NotNull(message = "First name is required")
@@ -30,10 +32,6 @@ public class UserDto {
     @NotNull(message = "Email is required")
     @NotBlank(message = "Email is required")
     private String email;
-
-    @NotNull(message = "Password is required")
-    @NotBlank(message = "Password is required")
-    private String password;
 
     private String job;
 
@@ -51,7 +49,6 @@ public class UserDto {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
-                .password(user.getPassword())
                 .image(user.getImage())
                 .job(user.getJob())
                 .role(user.getRole())
@@ -64,5 +61,18 @@ public class UserDto {
         return users.stream()
                 .map(UserDto::fromUser)
                 .collect(Collectors.toList());
+    }
+
+    public User toUser() {
+        return User.builder()
+                .id(this.getId())
+                .firstName(this.getFirstName())
+                .lastName(this.getLastName())
+                .email(this.getEmail())
+                .image(this.getImage())
+                .job(this.getJob())
+                .role(this.getRole())
+                .number(this.getNumber())
+                .build();
     }
 }
