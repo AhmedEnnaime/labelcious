@@ -34,6 +34,7 @@ class _LoginState extends State<Login> {
       print(googleUser);
       print(credential);
       userController.signupFromGoogle(googleUser);
+      userController.setGoogleUser(googleUser);
       Navigator.push(context, MaterialPageRoute(builder: (_) => Home()));
     } else {
       // Show an error message

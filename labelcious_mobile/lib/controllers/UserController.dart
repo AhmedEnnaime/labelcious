@@ -4,7 +4,7 @@ import 'package:mobilelabelcious/models/User.dart';
 import 'package:mobilelabelcious/services/UserService.dart';
 
 class UserController extends GetxController {
-  var userList = <User>[].obs;
+  GoogleSignInAccount? googleUser;
 
   void signupFromGoogle(GoogleSignInAccount googleUser) async {
     var displayName = googleUser.displayName;
@@ -20,6 +20,7 @@ class UserController extends GetxController {
     }
 
     var newUser = User(
+      id: int.parse(googleUser.id),
       firstName: firstName,
       lastName: lastName,
       email: googleUser.email,
@@ -39,5 +40,9 @@ class UserController extends GetxController {
       print('Failed to add user: $e');
       // Handle the error
     }
+  }
+
+  void setGoogleUser(GoogleSignInAccount user) {
+    googleUser = user;
   }
 }

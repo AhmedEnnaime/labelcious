@@ -8,6 +8,9 @@ List<Feedback> feedbackFromJson(String str) =>
 String feedbackToJson(List<Feedback> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+String singleFeedbackToJson(Feedback feedback) =>
+    json.encode(feedback.toJson());
+
 class Feedback {
   int? id;
   String? message;
@@ -32,10 +35,8 @@ class Feedback {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "message": message,
         "user_id": user_id,
         "plate_id": plate_id,
-        "user": user?.toJson(),
       };
 }
