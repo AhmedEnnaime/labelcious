@@ -1,5 +1,6 @@
 package com.labelvie.lablecious.backend.controllers;
 
+import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
 import com.labelvie.lablecious.backend.models.dto.UserDto;
 import com.labelvie.lablecious.backend.services.UserService;
 import jakarta.validation.Valid;
@@ -41,6 +42,27 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable long id) {
         UserDto updatedUser = userService.updateUser(userDto, id);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @GetMapping("email/{email}")
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
+        UserDto user = userService.getUserByEmail(email);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("signup")
+    public ResponseEntity<UserDto> signup(@Valid @RequestBody UserDto userDto) {
+        String email = userDto.getEmail();
+        UserDto existingUser;
+        try {
+            existingUser = userService.getUserByEmail(email);
+        } catch (ResourceNotFoundException ex) {
+            // User not found, proceed with creating a new user
+            UserDto createdUser = userService.saveUser(userDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
     @DeleteMapping("{id}")
