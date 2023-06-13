@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilelabelcious/controllers/FeedbackController.dart';
-import 'package:mobilelabelcious/controllers/PlateController.dart';
-import 'package:mobilelabelcious/models/Plate.dart' as Model;
 import 'package:mobilelabelcious/models/Feedback.dart' as MyFeedback;
 
 class FeedbacksWidget extends StatefulWidget {
@@ -25,9 +23,6 @@ class _FeedbacksWidgetState extends State<FeedbacksWidget> {
 
   @override
   Widget build(BuildContext context) {
-    PlateController plateController = Get.find<PlateController>();
-    Model.Plate selectedPlate = plateController.selectedPlate.value;
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

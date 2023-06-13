@@ -25,4 +25,36 @@ class UserService {
       throw Exception("Failed to add user.");
     }
   }
+
+  static Future<User?> getUserById(int id) async {
+    var response =
+        await client.get(Uri.parse('http://localhost:8082/api/users/${id}'));
+
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      var user = singleUserFromJson(jsonString);
+      return user;
+    } else {
+      return null;
+    }
+  }
+
+  static Future<User?> updateUser(User user, int id) async {
+    var requestBody = singleUserToJson(user);
+    print('Request body: $requestBody');
+    var response = await client.put(
+      Uri.parse('http://localhost:8082/api/users/${id}'),
+      body: singleUserToJson(user),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      var updatedUser = User.fromJson(json.decode(jsonString));
+      return updatedUser;
+    } else {
+      print("Failed to update user");
+      return null;
+    }
+  }
 }

@@ -6,6 +6,8 @@ import 'package:mobilelabelcious/services/UserService.dart';
 class UserController extends GetxController {
   GoogleSignInAccount? googleUser;
 
+  var authUser = User().obs();
+
   void signupFromGoogle(GoogleSignInAccount googleUser) async {
     var displayName = googleUser.displayName;
     var firstName = '';
@@ -38,6 +40,41 @@ class UserController extends GetxController {
     } catch (e) {
       print('Failed to add user: $e');
       // Handle the error
+    }
+  }
+
+  void findUserById() async {
+    try {
+      var user = await UserService.getUserById(googleUser!.id.hashCode);
+      if (user != null) {
+        authUser = user;
+      } else {
+        print('User not found.');
+      }
+    } catch (e) {
+      print('Failed to retrieve user: $e');
+      // Handle the error
+    }
+  }
+
+  void updateUser(User user, int id) {
+    var updatedUser = User(
+      firstName: user.firstName,
+      lastName: user.lastName,
+      number: user.number,
+      job: user.job,
+    );
+
+    try {
+      var editedUser = UserService.updateUser(updatedUser, id);
+      if (editedUser != null) {
+        print("User updated successfully");
+      } else {
+        print("Error in updating user in controller");
+      }
+    } catch (e) {
+      print("Error: $e");
+      rethrow;
     }
   }
 

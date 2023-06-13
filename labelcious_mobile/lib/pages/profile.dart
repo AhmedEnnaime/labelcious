@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:mobilelabelcious/controllers/UserController.dart';
+import 'package:mobilelabelcious/models/User.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -19,9 +22,27 @@ class _ProfileState extends State<Profile> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController jobController = TextEditingController();
+  TextEditingController idController = TextEditingController();
+
+  final UserController userController = Get.find<UserController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    firstNameController.text = userController.authUser.firstName ?? '';
+    lastNameController.text = userController.authUser.lastName ?? '';
+    emailController.text = userController.authUser.email ?? '';
+    numberController.text = userController.authUser.number ?? '';
+    jobController.text = userController.authUser.job ?? '';
+    idController.text = userController.authUser.id.toString();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -53,7 +74,7 @@ class _ProfileState extends State<Profile> {
                     height: 120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.asset("assets/avatar.jpg"),
+                      child: Image.network(userController.authUser.image ?? ""),
                     ),
                   ),
                   Positioned(
@@ -115,6 +136,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   TextFormField(
                     controller: emailController,
+                    enabled: false,
                     decoration: InputDecoration(
                         label: Text("Email"),
                         prefixIcon: Icon(
@@ -131,6 +153,7 @@ class _ProfileState extends State<Profile> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: numberController,
                     decoration: InputDecoration(
                         label: Text("Badge number"),
                         prefixIcon: Icon(
@@ -147,6 +170,7 @@ class _ProfileState extends State<Profile> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: idController,
                     decoration: InputDecoration(
                         label: Text("Job"),
                         prefixIcon: Icon(
@@ -166,7 +190,19 @@ class _ProfileState extends State<Profile> {
                     width: double.infinity,
                     height: 60,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        User updatedUser = User(
+                          id: userController.authUser.id,
+                          firstName: firstNameController.text,
+                          lastName: lastNameController.text,
+                          email: emailController.text,
+                          number: numberController.text,
+                          job: jobController.text,
+                          image: userController.authUser.image,
+                        );
+                        int userId = userController.authUser.id ?? 0;
+                        userController.updateUser(updatedUser, userId);
+                      },
                       child: Text(
                         "Edit Profile",
                         style: TextStyle(
