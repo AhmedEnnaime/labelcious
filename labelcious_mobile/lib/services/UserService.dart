@@ -47,6 +47,7 @@ class UserService {
       body: singleUserToJson(user),
       headers: {'Content-Type': 'application/json'},
     );
+    print("response status : ${response.body}");
 
     if (response.statusCode == 200) {
       var jsonString = response.body;

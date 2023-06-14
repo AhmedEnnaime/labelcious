@@ -27,6 +27,8 @@ class UserController extends GetxController {
       lastName: lastName,
       email: googleUser.email,
       image: googleUser.photoUrl,
+      job: null,
+      number: null,
       // Set other attributes as needed
     );
 
@@ -57,16 +59,19 @@ class UserController extends GetxController {
     }
   }
 
-  void updateUser(User user, int id) {
+  void updateUser(User user, int id) async {
     var updatedUser = User(
+      id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
+      email: user.email,
+      image: user.image,
       number: user.number,
       job: user.job,
     );
 
     try {
-      var editedUser = UserService.updateUser(updatedUser, id);
+      var editedUser = await UserService.updateUser(updatedUser, id);
       if (editedUser != null) {
         print("User updated successfully");
       } else {

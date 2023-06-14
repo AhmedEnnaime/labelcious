@@ -170,7 +170,7 @@ class _ProfileState extends State<Profile> {
                     height: 20,
                   ),
                   TextFormField(
-                    controller: idController,
+                    controller: jobController,
                     decoration: InputDecoration(
                         label: Text("Job"),
                         prefixIcon: Icon(
@@ -191,8 +191,9 @@ class _ProfileState extends State<Profile> {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
+                        int userId = userController.authUser.id ?? 0;
                         User updatedUser = User(
-                          id: userController.authUser.id,
+                          id: userId,
                           firstName: firstNameController.text,
                           lastName: lastNameController.text,
                           email: emailController.text,
@@ -200,8 +201,9 @@ class _ProfileState extends State<Profile> {
                           job: jobController.text,
                           image: userController.authUser.image,
                         );
-                        int userId = userController.authUser.id ?? 0;
+
                         userController.updateUser(updatedUser, userId);
+                        Navigator.pushNamed(context, "/home");
                       },
                       child: Text(
                         "Edit Profile",

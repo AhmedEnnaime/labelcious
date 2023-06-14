@@ -35,11 +35,6 @@ class _CartAppBarState extends State<CartAppBar> {
           ),
         ),
         Spacer(),
-        // Icon(
-        //   Icons.more_vert,
-        //   size: 30,
-        //   color: Color(0xFF4C53A5),
-        // )
       ]),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilelabelcious/controllers/FeedbackController.dart';
+import 'package:mobilelabelcious/controllers/PlateController.dart';
 import 'package:mobilelabelcious/models/Feedback.dart' as MyFeedback;
 
 class FeedbacksWidget extends StatefulWidget {
@@ -12,9 +13,8 @@ class FeedbacksWidget extends StatefulWidget {
 }
 
 class _FeedbacksWidgetState extends State<FeedbacksWidget> {
-  final FeedbackController feedbackController = Get.find<FeedbackController>();
   final TextEditingController messageController = TextEditingController();
-
+  final FeedbackController feedbackController = Get.find<FeedbackController>();
   @override
   void dispose() {
     messageController.dispose();
@@ -47,7 +47,9 @@ class _FeedbacksWidgetState extends State<FeedbacksWidget> {
             ),
           ),
           Obx(() {
-            List<MyFeedback.Feedback> feedbacks = feedbackController.feedbacks;
+            PlateController plateController = Get.find<PlateController>();
+            List<MyFeedback.Feedback> feedbacks =
+                plateController.selectedPlate.value.feedbacks ?? [];
             if (feedbacks.isNotEmpty) {
               return ListView.builder(
                 shrinkWrap: true,
@@ -55,9 +57,17 @@ class _FeedbacksWidgetState extends State<FeedbacksWidget> {
                 itemBuilder: (context, index) {
                   MyFeedback.Feedback feedback = feedbacks[index];
                   return ListTile(
-                    leading: Icon(
-                      Icons.person_2,
-                      size: 30,
+                    leading: Stack(
+                      children: [
+                        SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network(feedback.user?.image ?? ""),
+                          ),
+                        ),
+                      ],
                     ),
                     title: Text(
                       '${feedback.user?.firstName ?? "Anonymous"} ${feedback.user?.lastName ?? ""}',

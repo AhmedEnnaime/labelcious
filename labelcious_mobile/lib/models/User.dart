@@ -48,5 +48,7 @@ class User {
         "lastName": lastName,
         "email": email,
         "image": image,
+        "number": number,
+        "job": job,
       };
 }
