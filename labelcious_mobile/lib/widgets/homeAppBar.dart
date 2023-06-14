@@ -42,7 +42,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 height: 40,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.network(userController.authUser.image ?? ""),
+                  child:
+                      Image.network(userController.googleUser?.photoUrl ?? ""),
                 ),
               ),
             ],
