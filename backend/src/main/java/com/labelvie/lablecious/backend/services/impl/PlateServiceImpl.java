@@ -9,6 +9,7 @@ import com.labelvie.lablecious.backend.services.PlateService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,6 +33,7 @@ public class PlateServiceImpl implements PlateService {
     public PlateDto savePlate(PlateDto plateDto) {
         Plate plate = plateDto.toPlate();
         plate.setCategory(categoryService.findOrFail(plateDto.getCategoryId()));
+        plate.setFeedbacks(new ArrayList<>());
         return PlateDto.fromPlate(plateRepository.save(plate));
     }
 
@@ -40,6 +42,9 @@ public class PlateServiceImpl implements PlateService {
         plateDto.setId(this.findOrFail(id).getId());
         Plate plate = plateDto.toPlate();
         plate.setCategory(categoryService.findOrFail(plateDto.getCategoryId()));
+        if (plate.getFeedbacks() == null) {
+            plate.setFeedbacks(new ArrayList<>());
+        }
         return PlateDto.fromPlate(plateRepository.save(plate));
     }
 

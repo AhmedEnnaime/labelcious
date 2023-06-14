@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,5 +31,8 @@ public class Plate {
 
     @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
+    private Set<MenuPlate> menuPlates;
 
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,7 +20,8 @@ public class Menu {
     @Column(nullable = false)
     private Date date;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuPlate> plates;
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private Set<MenuPlate> menuPlates;
+
 
 }
