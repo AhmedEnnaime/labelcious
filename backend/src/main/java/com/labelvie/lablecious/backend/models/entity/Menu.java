@@ -1,14 +1,20 @@
 package com.labelvie.lablecious.backend.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "menus")
 public class Menu {
 
@@ -19,7 +25,5 @@ public class Menu {
     @Column(nullable = false)
     private Date date;
 
-    @OneToMany(mappedBy = "menu")
-    private List<MenuPlate> plates;
 
 }

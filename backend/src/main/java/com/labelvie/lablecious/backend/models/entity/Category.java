@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 @Entity
 @Data
@@ -28,8 +27,5 @@ public class Category {
 
     @Column(name = "price", nullable = false)
     private double price;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Plate> plates;
 
 }

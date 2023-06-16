@@ -3,8 +3,6 @@ package com.labelvie.lablecious.backend.services.impl;
 import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
 import com.labelvie.lablecious.backend.models.dto.FeedbackDto;
 import com.labelvie.lablecious.backend.models.entity.Feedback;
-import com.labelvie.lablecious.backend.models.entity.Plate;
-import com.labelvie.lablecious.backend.models.entity.User;
 import com.labelvie.lablecious.backend.repository.FeedbackRepository;
 import com.labelvie.lablecious.backend.services.FeedbackService;
 import com.labelvie.lablecious.backend.services.PlateService;

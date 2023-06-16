@@ -1,27 +1,32 @@
 package com.labelvie.lablecious.backend.models.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Data
-@Table(name = "order_plate")
+@AllArgsConstructor
 @NoArgsConstructor
-public class OrderPlate {
+@Data
+@Builder
+@Table(name = "menu_plates")
+public class MenuPlates {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "plate_id", nullable = false, referencedColumnName = "id")
     private Plate plate;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false, referencedColumnName = "id")
-    private Order order;
-
-    @Column(nullable = false)
-    private int quantity;
+    @JoinColumn(name = "menu_id", nullable = false, referencedColumnName = "id")
+    private Menu menu;
 }

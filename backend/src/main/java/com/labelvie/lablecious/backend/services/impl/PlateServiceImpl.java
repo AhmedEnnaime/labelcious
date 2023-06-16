@@ -2,6 +2,7 @@ package com.labelvie.lablecious.backend.services.impl;
 
 import com.labelvie.lablecious.backend.exceptions.handler.ResourceNotFoundException;
 import com.labelvie.lablecious.backend.models.dto.PlateDto;
+import com.labelvie.lablecious.backend.models.entity.Feedback;
 import com.labelvie.lablecious.backend.models.entity.Plate;
 import com.labelvie.lablecious.backend.repository.PlateRepository;
 import com.labelvie.lablecious.backend.services.CategoryService;
@@ -9,6 +10,7 @@ import com.labelvie.lablecious.backend.services.PlateService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,6 +19,9 @@ public class PlateServiceImpl implements PlateService {
 
     private  final PlateRepository plateRepository;
     private final CategoryService categoryService;
+
+    private Plate plate;
+    private final List<Feedback> feedbackList = new ArrayList<>();
 
     @Override
     public List<PlateDto> getPlates() {
@@ -30,16 +35,18 @@ public class PlateServiceImpl implements PlateService {
 
     @Override
     public PlateDto savePlate(PlateDto plateDto) {
-        Plate plate = plateDto.toPlate();
+        plate = plateDto.toEntity();
         plate.setCategory(categoryService.findOrFail(plateDto.getCategoryId()));
+        plate.setFeedbacks(feedbackList);
         return PlateDto.fromPlate(plateRepository.save(plate));
     }
 
     @Override
     public PlateDto updatePlate(long id, PlateDto plateDto) {
         plateDto.setId(this.findOrFail(id).getId());
-        Plate plate = plateDto.toPlate();
+        plate = plateDto.toEntity();
         plate.setCategory(categoryService.findOrFail(plateDto.getCategoryId()));
+        if(plate.getFeedbacks()==null) plate.setFeedbacks(feedbackList);
         return PlateDto.fromPlate(plateRepository.save(plate));
     }
 
@@ -49,13 +56,15 @@ public class PlateServiceImpl implements PlateService {
     }
 
     @Override
+    public List<PlateDto>  getPlatesByCategoryId(long id){
+        return PlateDto.fromPlates(plateRepository.findByCategoryId(id));
+
+    }
+
+
+    @Override
     public Plate findOrFail(long id) {
         return plateRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFoundException("The plate with id " + id + " does not exist"));
-    }
-
-    @Override
-    public List<PlateDto>  getPlatesByCategoryId(long id){
-        return PlateDto.fromPlates(plateRepository.findByCategoryId(id));
     }
 }

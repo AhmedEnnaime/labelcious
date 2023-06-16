@@ -47,4 +47,5 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFoundException("The category with id " + id + " does not exist"));
     }
+
 }

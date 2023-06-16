@@ -1,11 +1,7 @@
 package com.labelvie.lablecious.backend.controllers;
 
 import com.labelvie.lablecious.backend.models.dto.OrderDto;
-import com.labelvie.lablecious.backend.models.dto.OrderPlateDto;
-import com.labelvie.lablecious.backend.models.entity.OrderPlate;
-import com.labelvie.lablecious.backend.services.OrderPlateService;
 import com.labelvie.lablecious.backend.services.OrderService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +14,6 @@ public class OrderController {
 
     private OrderService orderService;
 
-    private OrderPlateService orderPlateService;
-
-    public OrderController(OrderService orderService, OrderPlateService orderPlateService) {
-        this.orderService = orderService;
-        this.orderPlateService = orderPlateService;
-    }
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> getOrders() {
@@ -43,16 +33,5 @@ public class OrderController {
         return new  ResponseEntity<String> ("Order deleted successfully", HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<OrderPlate> saveOrder(@Valid @RequestBody OrderPlate orderPlate) {
-        OrderPlate savedOrder = orderPlateService.saveOrder(orderPlate);
-        return ResponseEntity.ok(savedOrder);
-    }
-
-//    @PutMapping("{id}")
-//    public ResponseEntity<OrderDto> updateOrder(@PathVariable long id, @Valid @RequestBody OrderDto orderDto) {
-//        OrderDto updatedOrder = orderService.updateOrder(orderDto, id);
-//        return ResponseEntity.ok(updatedOrder);
-//    }
 
 }

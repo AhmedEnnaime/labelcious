@@ -3,8 +3,6 @@ package com.labelvie.lablecious.backend.models.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
 @Table(name = "orders")

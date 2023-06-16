@@ -4,11 +4,12 @@ import com.labelvie.lablecious.backend.models.dto.PlateDto;
 import com.labelvie.lablecious.backend.services.PlateService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@Validated
+@Validated
 @RestController
 @RequestMapping("/api/plates")
 @AllArgsConstructor
@@ -36,16 +37,18 @@ public class PlateController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<PlateDto> updatePlate(@PathVariable long id,    @RequestBody PlateDto plateDto) {
+    public ResponseEntity<PlateDto> updatePlate(@PathVariable long id, @RequestBody PlateDto plateDto) {
         PlateDto updatedPlate = plateService.updatePlate(id, plateDto);
         return ResponseEntity.ok(updatedPlate);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlate(@PathVariable long id) {
         plateService.deletePlate(id);
         return ResponseEntity.noContent().build();
     }
+
 
     @GetMapping("/category/{id}")
     public ResponseEntity<List<PlateDto>> getPlatesByCategoryId(@PathVariable long id) {

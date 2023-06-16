@@ -1,6 +1,5 @@
 package com.labelvie.lablecious.backend.models.dto;
 
-import com.labelvie.lablecious.backend.models.entity.Plate;
 import com.labelvie.lablecious.backend.models.entity.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,8 +1,6 @@
 package com.labelvie.lablecious.backend.models.dto;
 
 import com.labelvie.lablecious.backend.models.entity.Order;
-import com.labelvie.lablecious.backend.models.entity.OrderPlate;
-import com.labelvie.lablecious.backend.models.entity.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,9 +20,6 @@ public class OrderDto {
 
     @NotNull(message = "User is required")
     private Long user_id;
-
-    @NotNull(message = "Order cannot be sent without plates")
-    private List<OrderPlateDto> plates;
 
     public static OrderDto fromOrder(Order order) {
 
