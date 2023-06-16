@@ -1,6 +1,7 @@
 package com.labelvie.lablecious.backend.models.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,11 +17,14 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "plates")
 public class Plate{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(nullable = false)
     private String name;
+
     @Column
     private String  description;
     @Column
@@ -33,5 +37,6 @@ public class Plate{
     @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
     private List<Feedback> feedbacks;
 
-
 }
+
+

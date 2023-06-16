@@ -25,5 +25,4 @@ public class Menu {
     @Column(nullable = false)
     private Date date;
 
-
 }

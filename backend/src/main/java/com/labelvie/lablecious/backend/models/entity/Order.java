@@ -18,5 +18,4 @@ public class Order {
 
     @Column(nullable = false)
     private double total;
-
 }

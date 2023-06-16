@@ -38,7 +38,7 @@ public class PlateDto {
                 .image(plate.getImage())
                 .category(CategoryDto.fromCategory(plate.getCategory()))
                 .categoryId(plate.getCategory().getId())
-//                .feedbacks(FeedbackDto.fromFeedbacks(plate.getFeedbacks()))
+                .feedbacks(FeedbackDto.fromFeedbacks(plate.getFeedbacks()))
                 .build();
     }
 
