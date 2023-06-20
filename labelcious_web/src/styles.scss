@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+$color-primary: #3C3939;
+$color-secondary: #A1DD70;
+$color-accent: #FDFFF0;
+$color-background: #E8ECD6;
+$color-highlight: #A23131; // plugin for show this color : https://marketplace.visualstudio.com/items?itemName=bierner.color-info
+
+$font-primary: "Prociono", cursive;
+$font-secondary: "Nunito", sans-serif;
+$font-heading: "Baskerville", serif;
+
+body {
+  font-family: $font-secondary;
+  background-color: $color-background;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $color-primary;
+}
+
+button {
+  background-color: $color-accent;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 16px;
+  background-color: $color-primary;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: $color-highlight;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid $color-primary;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .signin {
+    text-align: center;
+    margin-top: 20px;
+    p {
+      margin: 0;
+    }
+  }
+}
