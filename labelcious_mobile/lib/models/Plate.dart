@@ -16,6 +16,7 @@ class Plate {
   int? category_id;
   Category? category;
   List<Feedback>? feedbacks;
+  int? quantity;
 
   Plate({
     this.id,
@@ -25,6 +26,7 @@ class Plate {
     this.category_id,
     this.category,
     this.feedbacks,
+    this.quantity,
   });
 
   factory Plate.fromJson(Map<String, dynamic> json) => Plate(
@@ -35,6 +37,7 @@ class Plate {
         category: Category.fromJson(json["category"]),
         feedbacks: List<Feedback>.from(
             json["feedbacks"].map((x) => Feedback.fromJson(x))),
+        quantity: json["quantity"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,5 +48,6 @@ class Plate {
         "category": category?.toJson(),
         "feedbacks":
             List<dynamic>.from(feedbacks?.map((x) => x.toJson()) ?? []),
+        "quantity": quantity,
       };
 }
