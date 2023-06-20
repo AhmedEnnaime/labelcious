@@ -1,5 +1,6 @@
 package com.labelvie.lablecious.backend.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,8 +42,9 @@ public class User {
     @Column(name = "role", nullable = false)
     private int role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Feedback> feedbacks;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;

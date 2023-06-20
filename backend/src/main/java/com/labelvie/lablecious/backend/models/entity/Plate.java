@@ -35,6 +35,7 @@ public class Plate{
     private Category category;
 
     @OneToMany(mappedBy = "plate", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Feedback> feedbacks;
 
 }

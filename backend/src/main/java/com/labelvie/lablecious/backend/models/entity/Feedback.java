@@ -24,10 +24,12 @@ public class Feedback {
     private String message;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "plate_id", nullable = false, referencedColumnName = "id")
+    @JsonBackReference
     private Plate plate;
 }
