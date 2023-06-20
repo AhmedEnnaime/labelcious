@@ -13,7 +13,6 @@ class Plate {
   String? name;
   String? description;
   String? image;
-  int? category_id;
   Category? category;
   List<Feedback>? feedbacks;
   int? quantity;
@@ -23,7 +22,6 @@ class Plate {
     this.name,
     this.description,
     this.image,
-    this.category_id,
     this.category,
     this.feedbacks,
     this.quantity,
@@ -33,7 +31,6 @@ class Plate {
         id: json["id"],
         name: json["name"],
         description: json["description"],
-        category_id: json["category_id"],
         category: Category.fromJson(json["category"]),
         feedbacks: List<Feedback>.from(
             json["feedbacks"].map((x) => Feedback.fromJson(x))),
@@ -44,7 +41,6 @@ class Plate {
         "id": id,
         "name": name,
         "description": description,
-        "category_id": category_id,
         "category": category?.toJson(),
         "feedbacks":
             List<dynamic>.from(feedbacks?.map((x) => x.toJson()) ?? []),
