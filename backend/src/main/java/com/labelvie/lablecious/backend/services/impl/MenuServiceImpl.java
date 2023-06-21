@@ -109,7 +109,7 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public List<MenuResponse> getMenuByDate(Date date) {
+    public List<MenuResponse> getMenuByDate(String date) {
         menuList = menuRepository.findByDate(date);
         return menuList.stream().map(menu -> {
             menuPlatesList = menuPlatesService.findByMenu(menu);

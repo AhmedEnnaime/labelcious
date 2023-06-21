@@ -22,7 +22,7 @@ public class MenuRequest {
 
     @NotBlank(message = "Date is required")
     @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
-    private Date date;
+    private String date;
 
     @NotBlank(message = "Plates is required")
     private List<MenuPlatesRequest> platesList;

@@ -1,14 +1,11 @@
 package com.labelvie.lablecious.backend.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -23,6 +20,6 @@ public class Menu {
     private long id;
 
     @Column(nullable = false)
-    private Date date;
+    private String date;
 
 }

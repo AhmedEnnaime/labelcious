@@ -20,7 +20,7 @@ import java.util.List;
 public class MenuController {
 
     private  final MenuService menuService;
-    private  final  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//    private  final  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @GetMapping
     public ResponseEntity<List<MenuResponse>> getMenus() {
@@ -35,7 +35,8 @@ public class MenuController {
     }
     @GetMapping("/date/{date}")
     public ResponseEntity<List<MenuResponse>> getMenuByDate(@PathVariable("date") String dateString) throws ParseException {
-         return ResponseEntity.ok(menuService.getMenuByDate(dateFormat.parse(dateString)));
+//         return ResponseEntity.ok(menuService.getMenuByDate(dateFormat.parse(dateString)));
+        return ResponseEntity.ok(menuService.getMenuByDate(dateString));
     }
 
     @PostMapping

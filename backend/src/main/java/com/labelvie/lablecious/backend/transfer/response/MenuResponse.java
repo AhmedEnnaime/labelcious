@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Builder
 public class MenuResponse {
     private long id;
-    private Date date;
+    private String date;
     private List<Plates> plates;
     @Data
     @AllArgsConstructor

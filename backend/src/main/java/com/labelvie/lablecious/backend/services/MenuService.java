@@ -16,5 +16,5 @@ public interface MenuService {
     void deleteMenu(long id);
     Menu findOrFail(long id);
 
-    List<MenuResponse> getMenuByDate(Date date);
+    List<MenuResponse> getMenuByDate(String date);
 }

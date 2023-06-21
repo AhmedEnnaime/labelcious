@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Data
 public class MenuDto {
     private long id;
-    private Date date;
+    private String date;
 
     public  static MenuDto fromEntity(Menu menu){
         return MenuDto.builder()
