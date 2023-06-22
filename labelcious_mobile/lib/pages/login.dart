@@ -54,8 +54,8 @@ class _LoginState extends State<Login> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/auth_img.jpg"),
-            fit: BoxFit.cover,
+            image: AssetImage("assets/bg_img.png"),
+            fit: BoxFit.none,
           ),
         ),
         child: Column(
@@ -78,14 +78,17 @@ class _LoginState extends State<Login> {
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey),
+                      color: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset("assets/google.png"),
                       Text(
                         "Signin with Google",
-                        style: TextStyle(color: Colors.black, fontSize: 17),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
