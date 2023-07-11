@@ -39,14 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(UserDto userDto, long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            updateUserFromDto(userDto, user);
-            User updatedUser = userRepository.save(user);
-            return UserDto.fromUser(updatedUser);
-        }
-        return null;
+        userDto.setRole(1);
+        userDto.setId(this.findOrFail(id).getId());
+        User user = userDto.toUser();
+        return UserDto.fromUser(userRepository.save(user));
     }
 
     @Override

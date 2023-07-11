@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
+import 'package:get/get.dart';
+import 'package:mobilelabelcious/controllers/UserController.dart';
 
 class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
@@ -9,6 +10,8 @@ class HomeAppBar extends StatefulWidget {
 }
 
 class _HomeAppBarState extends State<HomeAppBar> {
+  final UserController userController = Get.find<UserController>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,24 +35,19 @@ class _HomeAppBarState extends State<HomeAppBar> {
             ),
           ),
           Spacer(),
-          badges.Badge(
-            badgeContent: Text(
-              "3",
-              style: TextStyle(color: Colors.white),
-            ),
-            badgeStyle: badges.BadgeStyle(
-                badgeColor: Colors.red, padding: EdgeInsets.all(7)),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "cart");
-              },
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                size: 32,
-                color: Color(0xFF4C53A5),
+          Stack(
+            children: [
+              SizedBox(
+                width: 40,
+                height: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child:
+                      Image.network(userController.googleUser?.photoUrl ?? ""),
+                ),
               ),
-            ),
-          )
+            ],
+          ),
         ],
       ),
     );

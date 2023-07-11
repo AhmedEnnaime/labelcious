@@ -8,6 +8,8 @@ String userToJson(List<User> data) =>
 
 String singleUserToJson(User user) => json.encode(user.toJson());
 
+User singleUserFromJson(String str) => User.fromJson(json.decode(str));
+
 class User {
   int? id;
   String? firstName;
@@ -46,5 +48,7 @@ class User {
         "lastName": lastName,
         "email": email,
         "image": image,
+        "number": number,
+        "job": job,
       };
 }

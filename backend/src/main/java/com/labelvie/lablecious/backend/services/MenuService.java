@@ -4,7 +4,6 @@ import com.labelvie.lablecious.backend.models.entity.Menu;
 import com.labelvie.lablecious.backend.transfer.request.MenuRequest;
 import com.labelvie.lablecious.backend.transfer.response.MenuResponse;
 
-import java.util.Date;
 import java.util.List;
 
 public interface MenuService {

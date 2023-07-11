@@ -3,13 +3,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobilelabelcious/controllers/CategoryController.dart';
+import 'package:mobilelabelcious/controllers/UserController.dart';
 import 'package:mobilelabelcious/widgets/categoriesWidget.dart';
 import 'package:mobilelabelcious/widgets/homeAppBar.dart';
 import 'package:mobilelabelcious/widgets/platesWidget.dart';
 import 'package:badges/badges.dart' as badges;
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final CategoryController categoryController = Get.put(CategoryController());
+
+  final UserController userController = Get.put(UserController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userController.findUserById();
+  }
 
   @override
   Widget build(BuildContext context) {
