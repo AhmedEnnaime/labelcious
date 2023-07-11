@@ -24,3 +24,5 @@ import { UpdateComponent } from './update/update.component';
   providers: [CategoryService],
 })
 export class CategoryModule {}
+
+// ng g m views\components\plate --routing

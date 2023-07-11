@@ -89,5 +89,3 @@ export class PlateEffects {
     )
   );
 }
-
-// i want to restart the server and clean the cache : npm run clean

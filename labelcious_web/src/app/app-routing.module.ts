@@ -15,6 +15,13 @@ const routes: Routes = [
         (m) => m.CategoryModule
       ),
   },
+  {
+    path: 'plates',
+    loadChildren: () =>
+      import('./views/components/plate/plate.module').then(
+        (m) => m.PlateModule
+      ),
+  },
 ];
 
 @NgModule({
