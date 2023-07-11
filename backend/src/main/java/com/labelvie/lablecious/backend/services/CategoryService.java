@@ -7,7 +7,6 @@ import com.labelvie.lablecious.backend.models.entity.Category;
 import java.util.List;
 
 public interface CategoryService {
-
     List<CategoryDto> getCategories();
     CategoryDto getCategoryById(long id);
     CategoryDto saveCategory(CategoryDto categoryDto);
@@ -15,4 +14,6 @@ public interface CategoryService {
     void deleteCategory(long id);
     Category findOrFail(long id);
 }
+
+
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Config } from 'src/app/utils/config/app.config';
+import { Category } from 'src/app/utils/models/category.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class Presenter {
@@ -17,39 +19,23 @@ export class Presenter {
     this.URL = Config.BASE_URL + this.end_point;
   }
 
-  public index(): void {
-    this.http.get(this.URL).subscribe({
-      next: (data) => {
-        console.table(data);
-        // store data here
-      },
-      error: (response) => {
-        console.table(response.error);
-      },
-    });
+  public index(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.URL);
   }
 
-  public find(id: number) {
-    this.http.get(this.URL + '/' + id).subscribe({
-      next: (data) => {
-        console.table(data);
-      },
-      error: (response) => {
-        console.error('an error has occurred in find method');
-        console.table(response.error);
-      },
-    });
+  public show(id: string): Observable<Category> {
+    return this.http.get<Category>(this.URL + '/' + id);
   }
 
-  public filter(key: any, value: any) {
-    return 'filter';
+  public store(data: Category): Observable<Category> {
+    return this.http.post<Category>(this.URL, data);
   }
 
-  public update() {
-    return 'update';
+  public update(id: string, data: Category): Observable<Category> {
+    return this.http.put<Category>(this.URL + '/' + id, data);
   }
 
-  public delete() {
-    return 'delete';
+  public destroy(id: string): Observable<Category> {
+    return this.http.delete<Category>(this.URL + '/' + id);
   }
 }

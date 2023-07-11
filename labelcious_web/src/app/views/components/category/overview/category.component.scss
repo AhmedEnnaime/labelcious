@@ -1,0 +1,37 @@
+@import "../../../../../styles";
+.container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #530c0c;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #530c0c;
+}
+
+th {
+  background-color: $color-highlight;
+}
+td {
+  background-color: $color-background;
+}
+
+i {
+  cursor: pointer;
+  border: 2px solid #530c0c;
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+i:active {
+  background-color: #0f3fff;
+  border-color: #ebecef;
+  color: #ebecef !important;
+}

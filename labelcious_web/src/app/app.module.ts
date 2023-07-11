@@ -3,23 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './views/components/transmitter/register/register.component';
-
-import { Presenter } from 'src/app/services/api/presenter/presenter.service';
-import { Config } from './utils/config/app.config';
-import { CategoryService } from './services/api/category.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import { MyCounterComponent } from './views/components/demo/my-counter/my-counter.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegisterComponent,
-    MyCounterComponent,
-    MyCounterComponent,
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    HttpClientModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [Presenter, CategoryService, Config],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

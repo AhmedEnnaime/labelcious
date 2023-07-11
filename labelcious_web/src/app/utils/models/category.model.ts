@@ -1,8 +1,6 @@
-// structure : app\utils\models\category.model.ts
-
 export interface Category {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  price: number;
+  price: string;
 }

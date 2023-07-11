@@ -1,19 +1,24 @@
-import { counterReducer } from 'src/app/store/reducers/counter.reducer';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
+import { HomeComponent } from './views/pages/home/home.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+
+  {
+    path: 'Categories',
+    loadChildren: () =>
+      import('./views/components/category/category.module').then(
+        (m) => m.CategoryModule
+      ),
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    BrowserModule,
-    StoreModule.forRoot({ count: counterReducer }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-// create :my-counter.component.ts : -> ng g c views/components/demo/my-counter

@@ -1,20 +1,10 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { CategoryState } from 'src/app/store/reducers/category.reducer';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Category } from 'src/app/utils/models/category.model';
 
-export const selectCategoryState =
-  createFeatureSelector<CategoryState>('category');
+export const selectCategories =
+  createFeatureSelector<Array<Category>>('categories');
 
-export const selectCategory = createSelector(
-  selectCategoryState,
-  (state) => state.category
-);
-
-export const selectLoading = createSelector(
-  selectCategoryState,
-  (state) => state.loading
-);
-
-export const selectError = createSelector(
-  selectCategoryState,
-  (state) => state.error
-);
+export const selectCategoryById = (id: string) =>
+  createSelector(selectCategories, (Categories: Array<Category>) =>
+    Categories.find((Category) => Category.id.toString() === id)
+  );

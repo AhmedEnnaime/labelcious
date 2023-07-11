@@ -1,37 +1,32 @@
 import { createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/utils/models/category.model';
-import * as CategoryActions from 'src/app/store/actions/category.action';
+import * as CategoryActions from '../actions/category.action';
 
-export interface CategoryState {
-  category: Category | null;
-  loading: boolean;
-  error: any;
-}
-
-export const initialState: CategoryState = {
-  category: null,
-  loading: false,
-  error: null,
-};
+export const initialState: Array<Category> = [];
 
 export const categoryReducer = createReducer(
   initialState,
-  on(CategoryActions.addCategory, (state, { category }) => ({
-    ...state,
-    category,
-  })),
-  on(CategoryActions.getCategory, (state) => ({
-    ...state,
-    loading: true,
-  })),
-  on(CategoryActions.getCategorySuccess, (state, { category }) => ({
-    ...state,
-    loading: false,
-    category,
-  })),
-  on(CategoryActions.getCategoryFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  }))
+  on(CategoryActions.indexAPISuccess, (state, { allCategories }) => {
+    return allCategories;
+  }),
+  on(CategoryActions.showAPISuccess, (state, { category }) => {
+    return state.concat(category);
+  }),
+  on(CategoryActions.storeAPISuccess, (state, { category }) => {
+    return {
+      ...state,
+      categoryToLog: category, // Store the category in a separate property
+    };
+  }),
+  on(CategoryActions.updateAPISuccess, (state, { category }) => {
+    return state.map((item) => {
+      if (item.id === category.id) {
+        return category;
+      }
+      return item;
+    });
+  }),
+  on(CategoryActions.deleteAPISuccess, (state, { id }) => {
+    return state.filter((item) => item.id !== id);
+  })
 );

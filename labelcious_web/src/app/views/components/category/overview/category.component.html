@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Categories</h1>
+    <a
+      class="btn btn-primary"
+      routerLink="/Categories/new"
+      routerLinkActive="active"
+      >New Category</a
+    >
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories$ | async">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.price }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <i
+            class="bi bi-trash-fill text-danger me-2"
+            (click)="delete(category.id)"
+          ></i>
+          <i
+            class="bi bi-pencil-fill text-success"
+            routerLink="/Categories/{{ category.id }}"
+            routerLinkActive="active"
+          >
+          </i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
