@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Dependencies
+
+1. bootstrap : npm install bootstrap@latest --save
+2. bootstrap-icons : npm install bootstrap-icons --save
+3. ngrx : npm install @ngrx/store --save
+4. ngrx entity : npm install @ngrx/entity --save
+5. ngrx store-devtools : npm install @ngrx/store-devtools --save
+6. routing : npm install @angular/router --save
+
+# Run the project
+
+ng serve --open or ng serve
