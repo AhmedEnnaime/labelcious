@@ -15,7 +15,7 @@ export const categoryReducer = createReducer(
   on(CategoryActions.storeAPISuccess, (state, { category }) => {
     return {
       ...state,
-      categoryToLog: category, // Store the category in a separate property
+      categoryToLog: category,
     };
   }),
   on(CategoryActions.updateAPISuccess, (state, { category }) => {
